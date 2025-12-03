@@ -1,0 +1,98 @@
+@import "tailwindcss";
+
+@theme {
+  --color-soft-blue-light: #BFDBFE;
+  --color-soft-blue: #93C5FD;
+  --color-soft-yellow-light: #FDE68A;
+  --color-soft-yellow: #FEF08A;
+  --color-brand-red: #DC2626;
+}
+
+body {
+  background: linear-gradient(to bottom right, var(--color-soft-blue-light), white, var(--color-soft-yellow-light));
+  background-attachment: fixed;
+  min-height: 100vh;
+  color: #1F2937;
+}
+
+.btn-primary {
+  background-color: var(--color-brand-red);
+  color: white;
+  font-weight: 600;
+  padding: 1rem 2rem;
+  border-radius: 0.5rem;
+  transition: all 0.3s;
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+}
+
+.btn-primary:hover {
+  background-color: #B91C1C;
+  transform: scale(1.05);
+}
+
+.section-container {
+  max-width: 80rem;
+  margin: 0 auto;
+  padding: 3rem 1rem;
+}
+
+@media (min-width: 640px) {
+  .section-container {
+    padding: 3rem 1.5rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .section-container {
+    padding: 4rem 2rem;
+  }
+}
+
+.card {
+  background-color: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(4px);
+  border-radius: 0.75rem;
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+  padding: 1.5rem;
+  transition: all 0.3s;
+}
+
+.card:hover {
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+}
+
+.section-title {
+  font-size: 1.875rem;
+  font-weight: 700;
+  text-align: center;
+  margin-bottom: 2rem;
+  color: #1F2937;
+}
+
+@media (min-width: 768px) {
+  .section-title {
+    font-size: 2.25rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .section-title {
+    font-size: 3rem;
+  }
+}
+
+.section-subtitle {
+  font-size: 1.125rem;
+  text-align: center;
+  color: #374151;
+  margin-bottom: 3rem;
+  max-width: 48rem;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+@media (min-width: 768px) {
+  .section-subtitle {
+    font-size: 1.25rem;
+  }
+}
