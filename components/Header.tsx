@@ -21,7 +21,7 @@ export default function Header() {
         <div className="flex items-center justify-between h-20">
           {/* Logo/Brand - Far Left */}
           <Link href="/" className="flex-shrink-0 mr-8">
-            <h1 className="text-2xl md:text-3xl lg:text-4xl font-bold bg-gradient-to-r from-blue-700 to-orange-500 bg-clip-text text-transparent hover:opacity-80 transition-opacity whitespace-nowrap">
+            <h1 className="text-2xl md:text-3xl lg:text-5xl font-bold bg-gradient-to-r from-blue-700 to-orange-500 bg-clip-text text-transparent hover:opacity-80 transition-opacity whitespace-nowrap">
               PATH FINANCIAL COACHING
             </h1>
           </Link>

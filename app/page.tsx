@@ -3,13 +3,14 @@ import { Image } from 'lucide-react'
 
 export default function Home() {
   const helpItems = [
-    "Get out of debt",
-    "Learn how to handle money",
-    "Pay off student loans",
-    "Set up a monthly budget and stick to it",
-    "Buy a home",
-    "Plan for retirement",
-    "Achieve your dreams"
+    { text: "GET OUT OF DEBT", icon: "/icons/cutting up debt.png" },
+    { text: "LEARN HOW TO HANDLE MONEY", icon: "/icons/wallet pig.png" },
+    { text: "PAY OFF STUDENT LOANS", icon: "/icons/breaking chains.png" },
+    { text: "SET UP A MONTHLY BUDGET AND STICK TO IT", icon: "/icons/Monthly budget.png" },
+    { text: "BUILD AN EMERGENCY FUND", icon: "/icons/Emergency fund.png" },
+    { text: "BUY A HOME", icon: "/icons/house.png" },
+    { text: "PLAN FOR RETIREMENT", icon: "/icons/Planning for retirement.png" },
+    { text: "ACHIEVE YOUR DREAMS", icon: "/icons/Saving for dreams.png" }
   ]
 
   return (
@@ -17,12 +18,16 @@ export default function Home() {
       {/* Hero Section */}
       <section className="section-container py-12 md:py-16">
         <div className="max-w-6xl mx-auto">
-          <div className="relative rounded-2xl overflow-hidden shadow-2xl aspect-[21/9] bg-gradient-to-br from-soft-blue to-soft-yellow flex items-center justify-center">
-            <Image className="h-32 w-32 text-white opacity-40" />
-            <div className="absolute inset-0 flex flex-col items-center justify-center">
-              <h1 className="text-white text-4xl md:text-5xl font-bold mb-2">Make Your Dreams A Reality</h1>
-              <p className="text-white text-sm opacity-70 absolute bottom-4 right-4">Photo By Pablo Heimplatz</p>
+          <div className="relative rounded-2xl overflow-hidden shadow-2xl aspect-[21/9]">
+            <img
+              src="/images/pablo-heimplatz-EAvS-4KnGrk-unsplash.jpg"
+              alt="Inspirational landscape"
+              className="absolute inset-0 w-full h-full object-cover"
+            />
+            <div className="absolute inset-0 bg-black/30 flex flex-col items-center justify-center">
+              <h1 className="text-white text-4xl md:text-5xl font-bold mb-2 drop-shadow-lg">Make Your Dreams A Reality</h1>
             </div>
+            <p className="absolute bottom-4 right-4 text-white text-sm opacity-70 drop-shadow-md">Photo by Pablo Heimplatz</p>
           </div>
         </div>
       </section>
@@ -52,13 +57,23 @@ export default function Home() {
                 key={index}
                 className="flex items-center gap-4 p-6 rounded-lg bg-white/80 backdrop-blur-sm shadow-md hover:shadow-lg transition-all duration-300 transform hover:-translate-y-1"
               >
-                <div className="flex-shrink-0 w-12 h-12 rounded-full bg-brand-red/10 flex items-center justify-center">
-                  <div className="w-6 h-6 rounded-full bg-brand-red/20 flex items-center justify-center">
-                    <div className="w-3 h-3 rounded-full bg-brand-red"></div>
+                {item.icon ? (
+                  <div className="flex-shrink-0 w-16 h-16 flex items-center justify-center">
+                    <img
+                      src={item.icon}
+                      alt={item.text}
+                      className="w-full h-full object-contain"
+                    />
                   </div>
-                </div>
+                ) : (
+                  <div className="flex-shrink-0 w-12 h-12 rounded-full bg-brand-red/10 flex items-center justify-center">
+                    <div className="w-6 h-6 rounded-full bg-brand-red/20 flex items-center justify-center">
+                      <div className="w-3 h-3 rounded-full bg-brand-red"></div>
+                    </div>
+                  </div>
+                )}
                 <p className="text-lg font-medium text-gray-800">
-                  {item}
+                  {item.text}
                 </p>
               </div>
             ))}

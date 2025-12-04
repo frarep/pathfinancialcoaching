@@ -9,10 +9,35 @@
 }
 
 body {
-  background: linear-gradient(to bottom right, var(--color-soft-blue-light), white, var(--color-soft-yellow-light));
-  background-attachment: fixed;
   min-height: 100vh;
   color: #1F2937;
+}
+
+body::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url('/images/Mountains at sunset.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  opacity: 0.15;
+  z-index: -1;
+}
+
+body::after {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(to bottom right, var(--color-soft-blue-light) 0%, rgba(255, 255, 255, 0.7) 50%, var(--color-soft-yellow-light) 100%);
+  z-index: -2;
 }
 
 .btn-primary {

@@ -14,11 +14,11 @@ export default function Footer() {
 
           <div className="space-y-4 mb-8">
             <a
-              href="mailto:Frare.Patrick@PathFinancialCoaching.com"
+              href="mailto:frare.patrick@gmail.com"
               className="inline-flex items-center gap-2 text-lg hover:text-soft-blue-light transition-colors duration-200"
             >
               <Mail className="h-5 w-5" />
-              Frare.Patrick@PathFinancialCoaching.com
+              frare.patrick@pathfinancialcoaching.com
             </a>
 
             <div>
