@@ -33,14 +33,14 @@ export default function Home() {
       </section>
 
       {/* What Is A Financial Coach Section */}
-      <section className="section-container bg-white/60 backdrop-blur-sm">
+      <section className="section-container">
         <div className="max-w-4xl mx-auto">
           <h2 className="section-title">WHAT IS A FINANCIAL COACH?</h2>
-          <div className="space-y-6 text-lg text-gray-700 leading-relaxed">
-            <p>
+          <div className="space-y-6 text-lg text-gray-900 leading-relaxed">
+            <p className="drop-shadow-sm">
               A financial coach is a guide who helps individuals and couples set and achieve financial goals, such as budgeting and paying off debt.
             </p>
-            <p className="font-medium text-gray-800">
+            <p className="font-medium text-gray-900 drop-shadow-sm">
               Translation: Together, we'll identify your goals, uncover what's holding you back, and create a plan to help you build the life you dream of. We celebrate wins together and we work through setbacks together. I am here to encourage you as well as call out the hard truths. I believe that even in the darkest time, there is light and a path forward.
             </p>
           </div>
@@ -55,7 +55,7 @@ export default function Home() {
             {helpItems.map((item, index) => (
               <div
                 key={index}
-                className="flex items-center gap-4 p-6 rounded-lg bg-white/80 backdrop-blur-sm shadow-md hover:shadow-lg transition-all duration-300 transform hover:-translate-y-1"
+                className="flex items-center gap-4 py-4 pl-6 pr-8 rounded-full bg-white/80 backdrop-blur-sm shadow-md hover:shadow-lg transition-all duration-300 transform hover:-translate-y-1"
               >
                 {item.icon ? (
                   <div className="flex-shrink-0 w-16 h-16 flex items-center justify-center">
@@ -72,7 +72,7 @@ export default function Home() {
                     </div>
                   </div>
                 )}
-                <p className="text-lg font-medium text-gray-800">
+                <p className="text-lg font-medium text-gray-800 text-center flex-1">
                   {item.text}
                 </p>
               </div>
@@ -82,21 +82,21 @@ export default function Home() {
       </section>
 
       {/* Meet Coach Patrick Section */}
-      <section className="section-container bg-white/60 backdrop-blur-sm">
+      <section className="section-container">
         <div className="max-w-6xl mx-auto">
           <h2 className="section-title mb-12">MEET COACH PATRICK</h2>
 
           <div className="grid md:grid-cols-2 gap-12 items-center">
             {/* Left Column - Content */}
             <div className="space-y-6 max-w-lg">
-              <div className="space-y-4 text-lg text-gray-700 leading-relaxed">
-                <p className="font-semibold text-xl text-gray-900">
+              <div className="space-y-4 text-lg text-gray-900 leading-relaxed">
+                <p className="font-semibold text-xl text-gray-900 drop-shadow-sm">
                   Do your dreams feel out of reach? I believe they're not.
                 </p>
-                <p>
+                <p className="drop-shadow-sm">
                   Dreams are what move us forward—and with the right plan, they can become reality.
                 </p>
-                <p>
+                <p className="drop-shadow-sm">
                   Let's talk about your goals and how we can make them happen.
                 </p>
               </div>

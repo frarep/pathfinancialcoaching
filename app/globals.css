@@ -6,6 +6,7 @@
   --color-soft-yellow-light: #FDE68A;
   --color-soft-yellow: #FEF08A;
   --color-brand-red: #DC2626;
+  --color-icon-blue: #2563EB;
 }
 
 body {
@@ -51,7 +52,7 @@ body::after {
 }
 
 .btn-primary:hover {
-  background-color: #B91C1C;
+  background-color: #16A34A !important;
   transform: scale(1.05);
 }
 
