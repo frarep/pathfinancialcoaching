@@ -2,10 +2,10 @@
 
 import Link from 'next/link'
 import { useState } from 'react'
-import { User } from 'lucide-react'
+import { User, ChevronDown } from 'lucide-react'
 
 export default function About() {
-  const [hoveredQuestion, setHoveredQuestion] = useState<number | null>(null)
+  const [expandedQuestion, setExpandedQuestion] = useState<number | null>(null)
 
   const questions = [
     {
@@ -58,7 +58,7 @@ export default function About() {
       <section className="section-container">
         <div className="grid md:grid-cols-2 gap-12 items-start max-w-6xl mx-auto">
           {/* Photo Placeholder */}
-          <div className="order-2 md:order-1">
+          <div className="order-1 md:order-1">
             <div className="relative rounded-2xl overflow-hidden shadow-2xl aspect-[4/5] bg-gradient-to-br from-soft-blue to-soft-yellow flex items-center justify-center">
               <User className="h-48 w-48 text-white opacity-50" />
               <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/60 to-transparent p-6">
@@ -69,13 +69,13 @@ export default function About() {
           </div>
 
           {/* Biography */}
-          <div className="order-1 md:order-2">
-            <div className="space-y-6 text-lg text-gray-700 leading-relaxed">
+          <div className="order-2 md:order-2">
+            <div className="space-y-6 text-lg text-gray-900 leading-relaxed font-medium">
               <p>
                 Hi, I'm Patrick. I am a Dave Ramsey preferred coach who has also walked through debt, poor money habits, anxiety about savings and retirement, and multiple major car issues at the same time. As a father, husband, firefighter, veteran, friend, coach, I am here to walk with you through issues like these, to make a plan and achieve your dreams. I have been serving others for many years, assisting them in making a plan and executing it to get out of debt, save for retirement, save for kids college, save to buy a house and to pay off the mortgage early, as well as helping to bring peace to stress-filled lives. If you are looking for someone who can help you take your dreams from wishful thinking to reality, then schedule a call with me and lets go!!!
               </p>
               <p>
-                I live in Oregon, where there is always sunshine, albeit most often it is the liquid sunshine. I am blessed to be married to my wife of 15 years and we have 3 amazing kiddos that keep us on our toes. When not at the fire station or coaching, I like to garden, go fishing at local lakes, and do projects with my kids. For example, for Halloween this year we made their costumes; a dog rescuer, a sheriff deputy, and a costume of the MarioKart character "Dry Bones" complete with a spray foam head.
+                Currently I live in Oregon, where there is always sunshine, albeit most often it is the liquid sunshine. Besides being a Financial Coach, I serve the community as an Engineer/Paramedic and I was a Army Flight Paramedic for 8 years. I am blessed to be married to my wife of 15 years and we have 3 amazing kiddos that keep us on our toes. When not at the fire station or coaching, I like to garden, go fishing at local lakes, and do projects with my kids. For example, for Halloween this year we made their costumes; a dog rescuer, a sheriff deputy, and a costume of the MarioKart character "Dry Bones" complete with a spray foam head.
               </p>
             </div>
           </div>
@@ -83,33 +83,32 @@ export default function About() {
       </section>
 
       {/* Common Questions Section */}
-      <section className="section-container bg-white/60 backdrop-blur-sm">
+      <section className="section-container">
         <h2 className="section-title">COMMON QUESTIONS</h2>
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 max-w-7xl mx-auto">
+        <div className="max-w-4xl mx-auto space-y-4">
           {questions.map((item, index) => (
             <div
               key={index}
-              className="relative group"
-              onMouseEnter={() => setHoveredQuestion(index)}
-              onMouseLeave={() => setHoveredQuestion(null)}
+              className="overflow-hidden rounded-xl shadow-lg bg-gradient-to-r from-soft-blue-light via-white to-soft-yellow-light"
             >
-              <div className="card h-96 flex flex-col items-center justify-center text-center cursor-pointer relative overflow-hidden">
-                {/* Default State - Question */}
-                <div
-                  className={`absolute inset-0 flex items-center justify-center p-6 transition-opacity duration-300 ${
-                    hoveredQuestion === index ? 'opacity-0' : 'opacity-100'
+              <button
+                onClick={() => setExpandedQuestion(expandedQuestion === index ? null : index)}
+                className="w-full flex items-center justify-between px-6 py-4 text-left hover:bg-white/30 transition-colors"
+              >
+                <h3 className="text-lg md:text-xl font-bold text-gray-900 pr-4">{item.question}</h3>
+                <ChevronDown
+                  className={`flex-shrink-0 h-6 w-6 text-gray-600 transition-transform duration-300 ${
+                    expandedQuestion === index ? 'rotate-180' : ''
                   }`}
-                >
-                  <h3 className="text-lg md:text-xl font-bold text-gray-800">{item.question}</h3>
-                </div>
-
-                {/* Hover State - Answer */}
-                <div
-                  className={`absolute inset-0 flex items-center justify-start p-5 bg-gradient-to-br from-soft-blue to-soft-yellow transition-opacity duration-300 overflow-y-auto ${
-                    hoveredQuestion === index ? 'opacity-100' : 'opacity-0'
-                  }`}
-                >
-                  <p className="text-gray-800 leading-relaxed text-xs md:text-sm">{item.answer}</p>
+                />
+              </button>
+              <div
+                className={`overflow-hidden transition-all duration-300 ease-in-out ${
+                  expandedQuestion === index ? 'max-h-[500px] opacity-100' : 'max-h-0 opacity-0'
+                }`}
+              >
+                <div className="px-6 pb-6 pt-2">
+                  <p className="text-gray-700 leading-relaxed">{item.answer}</p>
                 </div>
               </div>
             </div>
@@ -120,8 +119,8 @@ export default function About() {
       {/* Final CTA Section */}
       <section className="section-container bg-gradient-to-r from-soft-blue-light to-soft-yellow-light">
         <div className="text-center max-w-4xl mx-auto">
-          <h2 className="text-3xl md:text-5xl font-bold mb-6 text-gray-900">
-            Are You Tired Of Being Scared? Are You Ready To Take Control?
+          <h2 className="text-3xl md:text-5xl font-bold mb-6 text-gray-900 leading-tight">
+            Are You Tired Of Being Scared?<br className="mb-2" /> Are You Ready To Take Control?
           </h2>
           <p className="text-xl md:text-2xl text-gray-800 mb-8 font-medium">
             Press The Button And Make The Change.

@@ -16,12 +16,12 @@ export default function Header() {
   ]
 
   return (
-    <header className="sticky top-0 z-50 bg-white/90 backdrop-blur-md shadow-md">
+    <header className="sticky top-0 z-50 bg-gradient-to-r from-soft-blue-light via-white to-soft-yellow-light shadow-lg">
       <nav className="max-w-full mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-20">
           {/* Logo/Brand - Far Left */}
           <Link href="/" className="flex-shrink-0 mr-8">
-            <h1 className="text-2xl md:text-3xl lg:text-5xl font-bold bg-gradient-to-r from-blue-700 to-orange-500 bg-clip-text text-transparent hover:opacity-80 transition-opacity whitespace-nowrap">
+            <h1 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-bold bg-gradient-to-r from-blue-700 to-orange-500 bg-clip-text text-transparent hover:opacity-80 transition-opacity whitespace-nowrap">
               PATH FINANCIAL COACHING
             </h1>
           </Link>

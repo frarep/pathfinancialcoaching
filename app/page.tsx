@@ -18,7 +18,7 @@ export default function Home() {
       {/* Hero Section */}
       <section className="section-container py-12 md:py-16">
         <div className="max-w-6xl mx-auto">
-          <div className="relative rounded-2xl overflow-hidden shadow-2xl aspect-[21/9]">
+          <div className="relative rounded-2xl overflow-hidden shadow-2xl aspect-[4/3] sm:aspect-[16/9] lg:aspect-[21/9]">
             <img
               src="/images/pablo-heimplatz-EAvS-4KnGrk-unsplash.jpg"
               alt="Inspirational landscape"

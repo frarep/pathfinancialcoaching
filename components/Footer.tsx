@@ -1,8 +1,19 @@
+'use client'
+
 import Link from 'next/link'
 import { Mail, ExternalLink } from 'lucide-react'
+import { useState } from 'react'
 
 export default function Footer() {
   const currentYear = new Date().getFullYear()
+  const [showCopied, setShowCopied] = useState(false)
+  const email = 'frare.patrick@pathfinancialcoaching.com'
+
+  const copyEmailToClipboard = () => {
+    navigator.clipboard.writeText(email)
+    setShowCopied(true)
+    setTimeout(() => setShowCopied(false), 3000)
+  }
 
   return (
     <footer className="bg-gray-800 text-white mt-20">
@@ -13,13 +24,20 @@ export default function Footer() {
           </h3>
 
           <div className="space-y-4 mb-8">
-            <a
-              href="mailto:frare.patrick@gmail.com"
-              className="inline-flex items-center gap-2 text-lg hover:text-soft-blue-light transition-colors duration-200"
-            >
-              <Mail className="h-5 w-5" />
-              frare.patrick@pathfinancialcoaching.com
-            </a>
+            <div className="relative inline-block">
+              <button
+                onClick={copyEmailToClipboard}
+                className="inline-flex items-center gap-2 text-lg hover:text-soft-yellow-light transition-colors duration-200 cursor-pointer"
+              >
+                <Mail className="h-5 w-5" />
+                EMAIL
+              </button>
+              {showCopied && (
+                <div className="absolute top-full left-1/2 transform -translate-x-1/2 mt-2 px-4 py-2 bg-green-500 text-white text-sm rounded-lg shadow-lg whitespace-nowrap animate-fade-in">
+                  Email copied to clipboard!
+                </div>
+              )}
+            </div>
 
             <div>
               <a

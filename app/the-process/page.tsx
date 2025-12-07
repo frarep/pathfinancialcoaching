@@ -5,7 +5,7 @@ import { MessageCircle, Calculator, GraduationCap, RefreshCw } from 'lucide-reac
 import { useState } from 'react'
 
 export default function TheProcess() {
-  const [hoveredCard, setHoveredCard] = useState<number | null>(null)
+  const [expandedCard, setExpandedCard] = useState<number | null>(null)
 
   const processSteps = [
     {
@@ -64,11 +64,12 @@ export default function TheProcess() {
           {processSteps.map((step, index) => (
             <div
               key={index}
-              className="relative group"
-              onMouseEnter={() => setHoveredCard(index)}
-              onMouseLeave={() => setHoveredCard(null)}
+              className="relative"
             >
-              <div className="relative h-80 flex flex-col items-center justify-center text-center cursor-pointer overflow-hidden rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 border-2 border-transparent hover:border-soft-blue/30">
+              <button
+                onClick={() => setExpandedCard(expandedCard === index ? null : index)}
+                className="relative h-80 w-full flex flex-col items-center justify-center text-center cursor-pointer overflow-hidden rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 border-2 border-transparent hover:border-soft-blue/30"
+              >
                 {/* Background Image */}
                 <div
                   className="absolute inset-0 bg-cover bg-center"
@@ -80,17 +81,18 @@ export default function TheProcess() {
                 {/* Default State */}
                 <div
                   className={`absolute inset-0 flex flex-col items-center justify-center p-6 transition-opacity duration-300 ${
-                    hoveredCard === index ? 'opacity-0' : 'opacity-100'
+                    expandedCard === index ? 'opacity-0' : 'opacity-100'
                   }`}
                 >
                   <div className="mb-4 drop-shadow-md" style={{ color: 'var(--color-icon-blue)' }}>{step.icon}</div>
                   <h3 className="text-2xl md:text-3xl font-bold text-gray-800 uppercase drop-shadow-sm">{step.title}</h3>
+                  <p className="text-sm text-gray-600 mt-2">Tap to learn more</p>
                 </div>
 
-                {/* Hover State */}
+                {/* Expanded State */}
                 <div
                   className={`absolute inset-0 transition-opacity duration-300 ${
-                    hoveredCard === index ? 'opacity-100' : 'opacity-0'
+                    expandedCard === index ? 'opacity-100' : 'opacity-0'
                   }`}
                 >
                   <div className="absolute inset-0 bg-gradient-to-br from-soft-blue to-soft-yellow"></div>
@@ -99,7 +101,7 @@ export default function TheProcess() {
                     <p className="text-gray-900 font-semibold leading-relaxed text-base drop-shadow-sm">{step.hoverText}</p>
                   </div>
                 </div>
-              </div>
+              </button>
             </div>
           ))}
         </div>
