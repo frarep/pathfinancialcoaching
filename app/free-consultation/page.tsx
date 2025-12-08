@@ -1,7 +1,7 @@
 'use client'
 
 import { useState, FormEvent } from 'react'
-import { CheckCircle2 } from 'lucide-react'
+import { CheckCircle2, X } from 'lucide-react'
 
 export default function FreeConsultation() {
   const [formData, setFormData] = useState({
@@ -13,11 +13,14 @@ export default function FreeConsultation() {
   })
 
   const [errors, setErrors] = useState<Record<string, string>>({})
+  const [blurred, setBlurred] = useState<Record<string, boolean>>({})
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [isSuccess, setIsSuccess] = useState(false)
 
   const validateEmail = (email: string) => {
-    return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)
+    // Comprehensive email validation
+    const emailRegex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/
+    return emailRegex.test(email) && email.length <= 254
   }
 
   const validatePhone = (phone: string) => {
@@ -27,11 +30,11 @@ export default function FreeConsultation() {
 
   const formatPhoneNumber = (value: string) => {
     const cleaned = value.replace(/\D/g, '')
-    const match = cleaned.match(/^(\d{3})(\d{3})(\d{4})$/)
-    if (match) {
-      return '(' + match[1] + ') ' + match[2] + '-' + match[3]
-    }
-    return value
+
+    if (cleaned.length === 0) return ''
+    if (cleaned.length <= 3) return cleaned
+    if (cleaned.length <= 6) return `(${cleaned.slice(0, 3)}) ${cleaned.slice(3)}`
+    return `(${cleaned.slice(0, 3)}) ${cleaned.slice(3, 6)}-${cleaned.slice(6, 10)}`
   }
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
@@ -40,7 +43,8 @@ export default function FreeConsultation() {
     if (name === 'phone') {
       const cleaned = value.replace(/\D/g, '')
       if (cleaned.length <= 10) {
-        setFormData(prev => ({ ...prev, [name]: value }))
+        const formatted = formatPhoneNumber(cleaned)
+        setFormData(prev => ({ ...prev, [name]: formatted }))
       }
     } else {
       setFormData(prev => ({ ...prev, [name]: value }))
@@ -49,6 +53,50 @@ export default function FreeConsultation() {
     if (errors[name]) {
       setErrors(prev => ({ ...prev, [name]: '' }))
     }
+  }
+
+  const handleBlur = (fieldName: string) => {
+    setBlurred(prev => ({ ...prev, [fieldName]: true }))
+  }
+
+  // Helper function to check if a field is valid
+  const isFieldValid = (fieldName: string): boolean => {
+    const value = formData[fieldName as keyof typeof formData]
+
+    switch (fieldName) {
+      case 'firstName':
+      case 'lastName':
+      case 'goals':
+        return value.trim().length > 0
+      case 'email':
+        return validateEmail(value)
+      case 'phone':
+        return validatePhone(value)
+      default:
+        return false
+    }
+  }
+
+  // Helper function to determine if we should show validation indicator
+  const shouldShowIndicator = (fieldName: string): boolean => {
+    return blurred[fieldName] && formData[fieldName as keyof typeof formData].length > 0
+  }
+
+  // Validation indicator component
+  const ValidationIndicator = ({ fieldName }: { fieldName: string }) => {
+    if (!shouldShowIndicator(fieldName)) return null
+
+    const isValid = isFieldValid(fieldName)
+
+    return isValid ? (
+      <div className="inline-flex items-center justify-center w-5 h-5 rounded-full bg-green-500 ml-2">
+        <CheckCircle2 className="w-3 h-3 text-white" strokeWidth={3} />
+      </div>
+    ) : (
+      <div className="inline-flex items-center justify-center w-5 h-5 bg-red-500 ml-2">
+        <X className="w-3 h-3 text-white" strokeWidth={3} />
+      </div>
+    )
   }
 
   const validateForm = () => {
@@ -97,10 +145,7 @@ export default function FreeConsultation() {
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({
-          ...formData,
-          phone: formatPhoneNumber(formData.phone)
-        }),
+        body: JSON.stringify(formData),
       })
 
       if (response.ok) {
@@ -163,8 +208,9 @@ export default function FreeConsultation() {
           <form onSubmit={handleSubmit} className="space-y-6">
             {/* First Name */}
             <div>
-              <label htmlFor="firstName" className="block text-base font-bold text-gray-900 mb-2 px-2 py-1 bg-white/70 rounded-md w-fit backdrop-blur-sm">
+              <label htmlFor="firstName" className="flex items-center text-base font-bold text-gray-900 mb-2 px-2 py-1 bg-white/70 rounded-md w-fit backdrop-blur-sm">
                 First Name *
+                <ValidationIndicator fieldName="firstName" />
               </label>
               <input
                 type="text"
@@ -172,6 +218,7 @@ export default function FreeConsultation() {
                 name="firstName"
                 value={formData.firstName}
                 onChange={handleChange}
+                onBlur={() => handleBlur('firstName')}
                 className={`w-full px-4 py-3 rounded-lg border bg-white/90 backdrop-blur-sm ${
                   errors.firstName ? 'border-red-500' : 'border-gray-300'
                 } focus:ring-2 focus:ring-soft-blue focus:border-transparent transition-all`}
@@ -184,8 +231,9 @@ export default function FreeConsultation() {
 
             {/* Last Name */}
             <div>
-              <label htmlFor="lastName" className="block text-base font-bold text-gray-900 mb-2 px-2 py-1 bg-white/70 rounded-md w-fit backdrop-blur-sm">
+              <label htmlFor="lastName" className="flex items-center text-base font-bold text-gray-900 mb-2 px-2 py-1 bg-white/70 rounded-md w-fit backdrop-blur-sm">
                 Last Name *
+                <ValidationIndicator fieldName="lastName" />
               </label>
               <input
                 type="text"
@@ -193,6 +241,7 @@ export default function FreeConsultation() {
                 name="lastName"
                 value={formData.lastName}
                 onChange={handleChange}
+                onBlur={() => handleBlur('lastName')}
                 className={`w-full px-4 py-3 rounded-lg border bg-white/90 backdrop-blur-sm ${
                   errors.lastName ? 'border-red-500' : 'border-gray-300'
                 } focus:ring-2 focus:ring-soft-blue focus:border-transparent transition-all`}
@@ -205,8 +254,9 @@ export default function FreeConsultation() {
 
             {/* Email */}
             <div>
-              <label htmlFor="email" className="block text-base font-bold text-gray-900 mb-2 px-2 py-1 bg-white/70 rounded-md w-fit backdrop-blur-sm">
+              <label htmlFor="email" className="flex items-center text-base font-bold text-gray-900 mb-2 px-2 py-1 bg-white/70 rounded-md w-fit backdrop-blur-sm">
                 Email *
+                <ValidationIndicator fieldName="email" />
               </label>
               <input
                 type="email"
@@ -214,6 +264,7 @@ export default function FreeConsultation() {
                 name="email"
                 value={formData.email}
                 onChange={handleChange}
+                onBlur={() => handleBlur('email')}
                 className={`w-full px-4 py-3 rounded-lg border bg-white/90 backdrop-blur-sm ${
                   errors.email ? 'border-red-500' : 'border-gray-300'
                 } focus:ring-2 focus:ring-soft-blue focus:border-transparent transition-all`}
@@ -226,8 +277,9 @@ export default function FreeConsultation() {
 
             {/* Phone Number */}
             <div>
-              <label htmlFor="phone" className="block text-base font-bold text-gray-900 mb-2 px-2 py-1 bg-white/70 rounded-md w-fit backdrop-blur-sm">
+              <label htmlFor="phone" className="flex items-center text-base font-bold text-gray-900 mb-2 px-2 py-1 bg-white/70 rounded-md w-fit backdrop-blur-sm">
                 Phone Number *
+                <ValidationIndicator fieldName="phone" />
               </label>
               <input
                 type="tel"
@@ -235,6 +287,7 @@ export default function FreeConsultation() {
                 name="phone"
                 value={formData.phone}
                 onChange={handleChange}
+                onBlur={() => handleBlur('phone')}
                 className={`w-full px-4 py-3 rounded-lg border bg-white/90 backdrop-blur-sm ${
                   errors.phone ? 'border-red-500' : 'border-gray-300'
                 } focus:ring-2 focus:ring-soft-blue focus:border-transparent transition-all`}
@@ -247,14 +300,16 @@ export default function FreeConsultation() {
 
             {/* Goals */}
             <div>
-              <label htmlFor="goals" className="block text-base font-bold text-gray-900 mb-2 px-2 py-1 bg-white/70 rounded-md w-fit backdrop-blur-sm">
+              <label htmlFor="goals" className="flex items-center text-base font-bold text-gray-900 mb-2 px-2 py-1 bg-white/70 rounded-md w-fit backdrop-blur-sm">
                 What Goals Are You Looking To Achieve? *
+                <ValidationIndicator fieldName="goals" />
               </label>
               <textarea
                 id="goals"
                 name="goals"
                 value={formData.goals}
                 onChange={handleChange}
+                onBlur={() => handleBlur('goals')}
                 rows={6}
                 className={`w-full px-4 py-3 rounded-lg border bg-white/90 backdrop-blur-sm ${
                   errors.goals ? 'border-red-500' : 'border-gray-300'

@@ -101,7 +101,7 @@ export default function Home() {
                 </p>
               </div>
 
-              <div className="flex flex-col sm:flex-row gap-4 pt-4">
+              <div className="flex flex-col sm:flex-row gap-4 pt-4 justify-center">
                 <Link href="/about">
                   <button className="btn-primary text-lg w-full sm:w-auto">
                     LEARN MORE
