@@ -1,6 +1,7 @@
-import { ExternalLink, Calculator, BookOpen, TrendingUp, PiggyBank, FileText, Lightbulb, Users, Briefcase, Home, Heart, Scale } from 'lucide-react'
+import { ExternalLink, Calculator, BookOpen, TrendingUp, PiggyBank, FileText, Lightbulb, Users, Briefcase, Home, Heart, Scale, BarChart3, GraduationCap } from 'lucide-react'
 
 export default function Resources() {
+  // Resources Section: Calculators, Forms, Apps
   const resources = [
     {
       icon: <Calculator className="h-12 w-12 text-soft-blue" />,
@@ -15,15 +16,15 @@ export default function Resources() {
       link: "#"
     },
     {
-      icon: <BookOpen className="h-12 w-12 text-soft-blue" />,
-      title: "Financial Education",
-      description: "Access articles, videos, and courses on personal finance fundamentals.",
+      icon: <PiggyBank className="h-12 w-12 text-soft-blue" />,
+      title: "Social Security Calculator",
+      description: "Estimate your Social Security benefits and plan for retirement income.",
       link: "#"
     },
     {
-      icon: <PiggyBank className="h-12 w-12 text-soft-blue" />,
-      title: "Emergency Fund Guide",
-      description: "Learn how to build and maintain a fully-funded emergency fund.",
+      icon: <TrendingUp className="h-12 w-12 text-soft-blue" />,
+      title: "Ramsey Retirement Calculator",
+      description: "Calculate how much you need to save for a comfortable retirement.",
       link: "#"
     },
     {
@@ -33,40 +34,146 @@ export default function Resources() {
       link: "#"
     },
     {
-      icon: <Lightbulb className="h-12 w-12 text-soft-blue" />,
+      icon: <img src="/images/everydollar-logo.png" alt="EveryDollar" className="h-12 w-auto mt-8" />,
+      title: "",
+      description: "Ramsey's free budgeting app to create and track your monthly budget on any device.",
+      link: "https://www.ramseysolutions.com/money/everydollar"
+    }
+  ]
+
+  // Additional Information Section: Educational Content
+  const additionalInfo = [
+    {
+      icon: <BookOpen className="h-12 w-12 text-soft-green" />,
+      title: "Financial Education Articles",
+      description: "Access articles, videos, and courses on personal finance fundamentals.",
+      link: "#"
+    },
+    {
+      icon: <PiggyBank className="h-12 w-12 text-soft-green" />,
+      title: "Emergency Fund Guide",
+      description: "Learn how to build and maintain a fully-funded emergency fund.",
+      link: "#"
+    },
+    {
+      icon: <Lightbulb className="h-12 w-12 text-soft-green" />,
       title: "Money Tips & Insights",
       description: "Regular tips and strategies for improving your financial situation.",
+      link: "#"
+    },
+    {
+      icon: <BarChart3 className="h-12 w-12 text-soft-green" />,
+      title: "Financial Planning Resources",
+      description: "Comprehensive guides for long-term financial planning and wealth building.",
       link: "#"
     }
   ]
 
+  // Trusted Partners Section: 2 spots for each category
   const partners = [
+    // Financial Advisors
     {
-      icon: <Briefcase className="h-12 w-12 text-soft-yellow" />,
-      businessName: "Example Insurance Agency",
-      serviceType: "Insurance Services",
-      description: "Comprehensive life, health, and property insurance solutions for your family's protection.",
+      icon: <BarChart3 className="h-12 w-12 text-soft-yellow" />,
+      businessName: "SmartVestor Pros",
+      serviceType: "Financial Advisors",
+      description: "Ramsey-trusted investment professionals who can help you plan for your financial future.",
+      link: "#"
+    },
+    {
+      icon: <BarChart3 className="h-12 w-12 text-soft-yellow" />,
+      businessName: "Derek Gilbert",
+      serviceType: "Financial Advisor",
+      description: "Experienced financial advisor providing personalized investment and retirement planning.",
+      link: "#"
+    },
+    // Real Estate
+    {
+      icon: <Home className="h-12 w-12 text-soft-yellow" />,
+      businessName: "Real Estate Partner 1",
+      serviceType: "Real Estate",
+      description: "Trusted real estate professional to help you buy or sell your home.",
       link: "#"
     },
     {
       icon: <Home className="h-12 w-12 text-soft-yellow" />,
-      businessName: "Trusted Mortgage Advisors",
+      businessName: "Real Estate Partner 2",
+      serviceType: "Real Estate",
+      description: "Experienced realtor specializing in your local market.",
+      link: "#"
+    },
+    // Mortgage Advisors
+    {
+      icon: <Briefcase className="h-12 w-12 text-soft-yellow" />,
+      businessName: "Mortgage Advisor 1",
       serviceType: "Mortgage Services",
       description: "Expert guidance for home buying, refinancing, and mortgage planning.",
       link: "#"
     },
     {
+      icon: <Briefcase className="h-12 w-12 text-soft-yellow" />,
+      businessName: "Mortgage Advisor 2",
+      serviceType: "Mortgage Services",
+      description: "Competitive rates and personalized mortgage solutions.",
+      link: "#"
+    },
+    // Legal Services
+    {
       icon: <Scale className="h-12 w-12 text-soft-yellow" />,
-      businessName: "Legal Partners LLC",
+      businessName: "Legal Partner 1",
       serviceType: "Legal Services",
       description: "Estate planning, wills, and trusts to protect your family's future.",
       link: "#"
     },
     {
+      icon: <Scale className="h-12 w-12 text-soft-yellow" />,
+      businessName: "Legal Partner 2",
+      serviceType: "Legal Services",
+      description: "Comprehensive legal services for your personal and financial needs.",
+      link: "#"
+    },
+    // Tax Services
+    {
       icon: <Heart className="h-12 w-12 text-soft-yellow" />,
-      businessName: "Community Tax Services",
+      businessName: "Tax Services 1",
       serviceType: "Tax Preparation",
       description: "Professional tax preparation and planning services year-round.",
+      link: "#"
+    },
+    {
+      icon: <Heart className="h-12 w-12 text-soft-yellow" />,
+      businessName: "Tax Services 2",
+      serviceType: "Tax Preparation",
+      description: "Expert tax advisors helping you maximize deductions and minimize liability.",
+      link: "#"
+    },
+    // Counselors
+    {
+      icon: <Users className="h-12 w-12 text-soft-yellow" />,
+      businessName: "Counselor 1",
+      serviceType: "Counseling Services",
+      description: "Professional counseling for financial stress and life transitions.",
+      link: "#"
+    },
+    {
+      icon: <Users className="h-12 w-12 text-soft-yellow" />,
+      businessName: "Counselor 2",
+      serviceType: "Counseling Services",
+      description: "Compassionate support for mental health and relationship guidance.",
+      link: "#"
+    },
+    // Job Coaches
+    {
+      icon: <GraduationCap className="h-12 w-12 text-soft-yellow" />,
+      businessName: "Job Coach 1",
+      serviceType: "Career Coaching",
+      description: "Career coaching to help you find the right job or advance in your field.",
+      link: "#"
+    },
+    {
+      icon: <GraduationCap className="h-12 w-12 text-soft-yellow" />,
+      businessName: "Job Coach 2",
+      serviceType: "Career Coaching",
+      description: "Resume building, interview prep, and career transition support.",
       link: "#"
     }
   ]
@@ -79,14 +186,17 @@ export default function Resources() {
           HELPFUL RESOURCES
         </h1>
         <p className="section-subtitle">
-          Tools and partners to support your financial journey
+          Tools, information, and partners to support your financial journey
         </p>
       </section>
 
-      {/* External Resources Section */}
+      {/* Resources Section */}
       <section className="section-container">
-        <h2 className="section-title">Recommended Resources</h2>
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <h2 className="section-title">Resources</h2>
+        <p className="section-subtitle">
+          Financial tools and calculators to help you take control
+        </p>
+        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
           {resources.map((resource, index) => (
             <a
               key={index}
@@ -111,13 +221,44 @@ export default function Resources() {
         </div>
       </section>
 
-      {/* Referral Partners Section */}
+      {/* Additional Information Section */}
       <section className="section-container bg-white/60 backdrop-blur-sm">
+        <h2 className="section-title">Additional Information</h2>
+        <p className="section-subtitle">
+          Educational content to expand your financial knowledge
+        </p>
+        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+          {additionalInfo.map((info, index) => (
+            <a
+              key={index}
+              href={info.link}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="card group hover:bg-gradient-to-br hover:from-green-50 hover:to-white transition-all duration-300"
+            >
+              <div className="flex flex-col items-center text-center">
+                <div className="mb-4 transform group-hover:scale-110 transition-transform duration-300">
+                  {info.icon}
+                </div>
+                <h3 className="text-xl font-bold mb-3 text-gray-900">{info.title}</h3>
+                <p className="text-gray-700 mb-4">{info.description}</p>
+                <div className="flex items-center gap-2 text-brand-red font-medium">
+                  Read More
+                  <ExternalLink className="h-4 w-4" />
+                </div>
+              </div>
+            </a>
+          ))}
+        </div>
+      </section>
+
+      {/* Trusted Partners Section */}
+      <section className="section-container">
         <h2 className="section-title">Trusted Partners</h2>
         <p className="section-subtitle">
           Professionals I recommend for complementary services
         </p>
-        <div className="grid md:grid-cols-2 gap-6 max-w-5xl mx-auto">
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-7xl mx-auto">
           {partners.map((partner, index) => (
             <a
               key={index}
@@ -144,7 +285,7 @@ export default function Resources() {
       </section>
 
       {/* Note Section */}
-      <section className="section-container">
+      <section className="section-container bg-white/60 backdrop-blur-sm">
         <div className="max-w-3xl mx-auto text-center card">
           <p className="text-gray-700 leading-relaxed">
             <strong>Note:</strong> The resources and partners listed on this page are recommendations based on quality and trustworthiness. I may receive referral compensation from some partners, but I only recommend services I truly believe will benefit your financial journey.
