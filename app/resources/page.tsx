@@ -73,30 +73,30 @@ export default function Resources() {
   const partners = [
     // Financial Advisors
     {
-      icon: <BarChart3 className="h-12 w-12 text-soft-yellow" />,
-      businessName: "SmartVestor Pros",
+      icon: <img src="/images/SmartVestor-Logo-Ramsey-Color-5-21-1117436319.png" alt="SmartVestor" className="h-12 w-auto" />,
+      businessName: "",
       serviceType: "Financial Advisors",
       description: "Ramsey-trusted investment professionals who can help you plan for your financial future.",
       link: "#"
     },
     {
-      icon: <BarChart3 className="h-12 w-12 text-soft-yellow" />,
+      icon: <img src="/images/Ameriprise logo.png" alt="Ameriprise" className="h-12 w-auto" />,
       businessName: "Derek Gilbert",
       serviceType: "Financial Advisor",
       description: "Experienced financial advisor providing personalized investment and retirement planning.",
-      link: "#"
+      link: "https://www.ameripriseadvisors.com/Derek.Gilbert/"
     },
     // Real Estate
     {
       icon: <Home className="h-12 w-12 text-soft-yellow" />,
-      businessName: "Real Estate Partner 1",
+      businessName: "Annesha Montez",
       serviceType: "Real Estate",
       description: "Trusted real estate professional to help you buy or sell your home.",
       link: "#"
     },
     {
       icon: <Home className="h-12 w-12 text-soft-yellow" />,
-      businessName: "Real Estate Partner 2",
+      businessName: "Tara Jo Hayes",
       serviceType: "Real Estate",
       description: "Experienced realtor specializing in your local market.",
       link: "#"
@@ -149,10 +149,10 @@ export default function Resources() {
     // Counselors
     {
       icon: <Users className="h-12 w-12 text-soft-yellow" />,
-      businessName: "Counselor 1",
+      businessName: "Tabitha Ramos, LCSW",
       serviceType: "Counseling Services",
-      description: "Professional counseling for financial stress and life transitions.",
-      link: "#"
+      description: "30 years of experience specializing in individuals and couples therapy, trauma, anxiety, depression, and relationship challenges.",
+      link: "https://care.headway.co/providers/tabitha-ramos"
     },
     {
       icon: <Users className="h-12 w-12 text-soft-yellow" />,
@@ -196,14 +196,14 @@ export default function Resources() {
         <p className="section-subtitle">
           Financial tools and calculators to help you take control
         </p>
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div className="flex flex-wrap justify-center gap-6">
           {resources.map((resource, index) => (
             <a
               key={index}
               href={resource.link}
               target="_blank"
               rel="noopener noreferrer"
-              className="card group hover:bg-gradient-to-br hover:from-soft-blue-light hover:to-white transition-all duration-300"
+              className="card group hover:bg-gradient-to-br hover:from-soft-blue-light hover:to-white transition-all duration-300 w-full sm:w-[calc(50%-0.75rem)] lg:w-[calc(25%-1.125rem)] max-w-sm"
             >
               <div className="flex flex-col items-center text-center">
                 <div className="mb-4 transform group-hover:scale-110 transition-transform duration-300">
@@ -227,14 +227,14 @@ export default function Resources() {
         <p className="section-subtitle">
           Educational content to expand your financial knowledge
         </p>
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div className="flex flex-wrap justify-center gap-6">
           {additionalInfo.map((info, index) => (
             <a
               key={index}
               href={info.link}
               target="_blank"
               rel="noopener noreferrer"
-              className="card group hover:bg-gradient-to-br hover:from-green-50 hover:to-white transition-all duration-300"
+              className="card group hover:bg-gradient-to-br hover:from-green-50 hover:to-white transition-all duration-300 w-full sm:w-[calc(50%-0.75rem)] lg:w-[calc(25%-1.125rem)] max-w-sm"
             >
               <div className="flex flex-col items-center text-center">
                 <div className="mb-4 transform group-hover:scale-110 transition-transform duration-300">
@@ -258,26 +258,26 @@ export default function Resources() {
         <p className="section-subtitle">
           Professionals I recommend for complementary services
         </p>
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-7xl mx-auto">
+        <div className="flex flex-wrap justify-center gap-6">
           {partners.map((partner, index) => (
             <a
               key={index}
               href={partner.link}
               target="_blank"
               rel="noopener noreferrer"
-              className="card group hover:bg-gradient-to-br hover:from-soft-yellow-light hover:to-white transition-all duration-300"
+              className="card group hover:bg-gradient-to-br hover:from-soft-yellow-light hover:to-white transition-all duration-300 w-full sm:w-[calc(50%-0.75rem)] lg:w-[calc(25%-1.125rem)] max-w-sm flex flex-col"
             >
-              <div className="flex flex-col items-center text-center">
-                <div className="mb-4 transform group-hover:scale-110 transition-transform duration-300">
+              <div className="flex flex-col items-center text-center flex-grow">
+                <p className="text-base font-semibold text-brand-red mb-2">{partner.serviceType}</p>
+                <div className="mt-4 mb-4 transform group-hover:scale-110 transition-transform duration-300">
                   {partner.icon}
                 </div>
                 <h3 className="text-2xl font-bold mb-2 text-gray-900">{partner.businessName}</h3>
-                <p className="text-sm font-semibold text-brand-red mb-3">{partner.serviceType}</p>
-                <p className="text-gray-700 mb-4">{partner.description}</p>
-                <div className="flex items-center gap-2 text-brand-red font-medium">
-                  Contact Partner
-                  <ExternalLink className="h-4 w-4" />
-                </div>
+                <p className="text-gray-700 mb-4 flex-grow">{partner.description}</p>
+              </div>
+              <div className="flex items-center justify-center gap-2 text-brand-red font-medium mt-auto">
+                Contact Partner
+                <ExternalLink className="h-4 w-4" />
               </div>
             </a>
           ))}
