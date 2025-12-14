@@ -26,7 +26,7 @@ export default function About() {
     },
     {
       question: "Who Do I Coach?",
-      answer: "I coach individuals and couples that come from all walks of life and are in different spots in their journey. In college and want to know how to plan for post graduation, I can help. Getting close to retirement and not sure if you are going to have enough? I can help. Looking at debt piling up, more month to go when the money runs out? I can absolutely help."
+      answer: "I coach individuals and couples that come from all walks of life and are in different spots in their journey. In college and want to know how to plan for post graduation? I can help. Getting close to retirement and not sure if you are going to have enough? I can help. Looking at debt piling up, more month to go when the money runs out? I can absolutely help."
     },
     {
       question: "Can I Do This On My Own?",
@@ -123,7 +123,7 @@ export default function About() {
             Are You Tired Of Being Scared?<br className="mb-2" /> Are You Ready To Take Control?
           </h2>
           <p className="text-xl md:text-2xl text-gray-800 mb-8 font-medium">
-            Press The Button And Make The Change.
+            MAKE THE CHANGE TODAY!
           </p>
           <Link href="/free-consultation">
             <button className="btn-primary text-xl">

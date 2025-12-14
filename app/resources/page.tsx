@@ -1,13 +1,13 @@
-import { ExternalLink, Calculator, BookOpen, TrendingUp, PiggyBank, FileText, Lightbulb, Users, Briefcase, Home, Heart, Scale, BarChart3, GraduationCap } from 'lucide-react'
+import { ExternalLink, BookOpen, TrendingUp, PiggyBank, FileText, Lightbulb, Users, Briefcase, Home, Heart, Scale, BarChart3, GraduationCap } from 'lucide-react'
 
 export default function Resources() {
   // Resources Section: Calculators, Forms, Apps
   const resources = [
     {
-      icon: <Calculator className="h-12 w-12 text-soft-blue" />,
+      icon: <img src="/images/flat-blue-50-ramsey-logo.svg" alt="Ramsey Solutions" className="h-12 w-auto" />,
       title: "Budget Calculator",
-      description: "Free tools to help you create and track your monthly budget effectively.",
-      link: "#"
+      description: "The budget calculator helps you see where you stand with your money right now.",
+      link: "https://www.ramseysolutions.com/budgeting/budget-calculator"
     },
     {
       icon: <TrendingUp className="h-12 w-12 text-soft-blue" />,
@@ -80,7 +80,7 @@ export default function Resources() {
       link: "#"
     },
     {
-      icon: <img src="/images/Ameriprise logo.png" alt="Ameriprise" className="h-12 w-auto" />,
+      icon: <img src="/images/derek-a-gilbert_0171d_400x490.webp" alt="Derek Gilbert" className="h-32 w-32 object-cover rounded-full" style={{objectPosition: '45% 0%', filter: 'brightness(1.15)'}} />,
       businessName: "Derek Gilbert",
       serviceType: "Financial Advisor",
       description: "Experienced financial advisor providing personalized investment and retirement planning.",
@@ -88,18 +88,18 @@ export default function Resources() {
     },
     // Real Estate
     {
-      icon: <Home className="h-12 w-12 text-soft-yellow" />,
+      icon: <img src="/images/Annesha.webp" alt="Annesha Montez" className="h-32 w-32 object-cover rounded-full" style={{objectPosition: '50% 0%', filter: 'brightness(1.15)'}} />,
       businessName: "Annesha Montez",
       serviceType: "Real Estate",
-      description: "Trusted real estate professional to help you buy or sell your home.",
-      link: "#"
+      description: "Trusted real estate professional with extensive market expertise. Dedicated to making your home buying and selling process smooth and stress-free.",
+      link: "https://www.anneshamontez.realtor/"
     },
     {
-      icon: <Home className="h-12 w-12 text-soft-yellow" />,
+      icon: <img src="/images/Tara jo.webp" alt="Tara Jo Hayes" className="h-32 w-32 object-cover rounded-full" style={{objectPosition: '50% 15%', filter: 'brightness(1.15)'}} />,
       businessName: "Tara Jo Hayes",
       serviceType: "Real Estate",
-      description: "Experienced realtor specializing in your local market.",
-      link: "#"
+      description: "Born and raised locally with deep knowledge of the area. Determined, attentive, and always available for your call. High standards and strong focus on great results.",
+      link: "https://www.windermere.com/directory/agents/tara-jo-hayes"
     },
     // Mortgage Advisors
     {
@@ -148,11 +148,11 @@ export default function Resources() {
     },
     // Counselors
     {
-      icon: <Users className="h-12 w-12 text-soft-yellow" />,
+      icon: <img src="/images/Tabitha2 adjusted.webp" alt="Tabitha Ramos" className="h-32 w-32 object-cover rounded-full" style={{objectPosition: '50% 15%', filter: 'brightness(1.15)'}} />,
       businessName: "Tabitha Ramos, LCSW",
       serviceType: "Counseling Services",
-      description: "30 years of experience specializing in individuals and couples therapy, trauma, anxiety, depression, and relationship challenges.",
-      link: "https://care.headway.co/providers/tabitha-ramos"
+      description: "Passionate about helping women and couples overcome relationship challenges and grow their own way. Specializing in trauma treatment including EMDR therapy.",
+      link: "https://growyourownwaytherapy.com/"
     },
     {
       icon: <Users className="h-12 w-12 text-soft-yellow" />,
@@ -203,18 +203,18 @@ export default function Resources() {
               href={resource.link}
               target="_blank"
               rel="noopener noreferrer"
-              className="card group hover:bg-gradient-to-br hover:from-soft-blue-light hover:to-white transition-all duration-300 w-full sm:w-[calc(50%-0.75rem)] lg:w-[calc(25%-1.125rem)] max-w-sm"
+              className="card group hover:bg-gradient-to-br hover:from-soft-blue-light hover:to-white transition-all duration-300 w-full sm:w-[calc(50%-0.75rem)] lg:w-[calc(25%-1.125rem)] max-w-sm flex flex-col"
             >
-              <div className="flex flex-col items-center text-center">
+              <div className="flex flex-col items-center text-center flex-grow">
                 <div className="mb-4 transform group-hover:scale-110 transition-transform duration-300">
                   {resource.icon}
                 </div>
                 <h3 className="text-xl font-bold mb-3 text-gray-900">{resource.title}</h3>
-                <p className="text-gray-700 mb-4">{resource.description}</p>
-                <div className="flex items-center gap-2 text-brand-red font-medium">
-                  Learn More
-                  <ExternalLink className="h-4 w-4" />
-                </div>
+                <p className="text-gray-700 mb-4 flex-grow">{resource.description}</p>
+              </div>
+              <div className="flex items-center justify-center gap-2 text-brand-red font-medium mt-auto">
+                Learn More
+                <ExternalLink className="h-4 w-4" />
               </div>
             </a>
           ))}
@@ -234,18 +234,18 @@ export default function Resources() {
               href={info.link}
               target="_blank"
               rel="noopener noreferrer"
-              className="card group hover:bg-gradient-to-br hover:from-green-50 hover:to-white transition-all duration-300 w-full sm:w-[calc(50%-0.75rem)] lg:w-[calc(25%-1.125rem)] max-w-sm"
+              className="card group hover:bg-gradient-to-br hover:from-green-50 hover:to-white transition-all duration-300 w-full sm:w-[calc(50%-0.75rem)] lg:w-[calc(25%-1.125rem)] max-w-sm flex flex-col"
             >
-              <div className="flex flex-col items-center text-center">
+              <div className="flex flex-col items-center text-center flex-grow">
                 <div className="mb-4 transform group-hover:scale-110 transition-transform duration-300">
                   {info.icon}
                 </div>
                 <h3 className="text-xl font-bold mb-3 text-gray-900">{info.title}</h3>
-                <p className="text-gray-700 mb-4">{info.description}</p>
-                <div className="flex items-center gap-2 text-brand-red font-medium">
-                  Read More
-                  <ExternalLink className="h-4 w-4" />
-                </div>
+                <p className="text-gray-700 mb-4 flex-grow">{info.description}</p>
+              </div>
+              <div className="flex items-center justify-center gap-2 text-brand-red font-medium mt-auto">
+                Read More
+                <ExternalLink className="h-4 w-4" />
               </div>
             </a>
           ))}
