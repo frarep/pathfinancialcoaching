@@ -16,16 +16,16 @@ export default function Resources() {
       link: "#"
     },
     {
-      icon: <PiggyBank className="h-12 w-12 text-soft-blue" />,
+      icon: <img src="/images/Social Security Logo.svg" alt="Social Security Administration" className="h-12 w-auto" />,
       title: "Social Security Calculator",
       description: "Estimate your Social Security benefits and plan for retirement income.",
-      link: "#"
+      link: "https://www.ssa.gov/OACT/quickcalc/index.html"
     },
     {
-      icon: <TrendingUp className="h-12 w-12 text-soft-blue" />,
-      title: "Ramsey Retirement Calculator",
+      icon: <img src="/images/flat-blue-50-ramsey-logo.svg" alt="Ramsey Solutions" className="h-12 w-auto" />,
+      title: "Retirement Calculator",
       description: "Calculate how much you need to save for a comfortable retirement.",
-      link: "#"
+      link: "https://www.ramseysolutions.com/retirement/retirement-calculator"
     },
     {
       icon: <FileText className="h-12 w-12 text-soft-blue" />,
@@ -73,11 +73,11 @@ export default function Resources() {
   const partners = [
     // Financial Advisors
     {
-      icon: <img src="/images/SmartVestor-Logo-Ramsey-Color-5-21-1117436319.png" alt="SmartVestor" className="h-12 w-auto" />,
-      businessName: "",
+      icon: <img src="/images/SmartVestor-Logo-Ramsey-Color-5-21-1117436319.png" alt="SmartVestor" className="h-12 w-auto mt-8 mb-12" />,
+      businessName: "\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0",
       serviceType: "Financial Advisors",
       description: "Ramsey-trusted investment professionals who can help you plan for your financial future.",
-      link: "#"
+      link: "https://www.ramseysolutions.com/retirement/smartvestor"
     },
     {
       icon: <img src="/images/derek-a-gilbert_0171d_400x490.webp" alt="Derek Gilbert" className="h-32 w-32 object-cover rounded-full" style={{objectPosition: '45% 0%', filter: 'brightness(1.15)'}} />,
