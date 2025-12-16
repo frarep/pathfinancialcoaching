@@ -1,4 +1,4 @@
-import { ExternalLink, BookOpen, TrendingUp, PiggyBank, FileText, Lightbulb, Users, Briefcase, Home, Heart, Scale, BarChart3, GraduationCap } from 'lucide-react'
+import { ExternalLink, BookOpen, TrendingUp, PiggyBank, FileText, Lightbulb, BarChart3 } from 'lucide-react'
 
 export default function Resources() {
   // Resources Section: Calculators, Forms, Apps
@@ -31,7 +31,7 @@ export default function Resources() {
       icon: <FileText className="h-12 w-12 text-soft-blue" />,
       title: "Financial Forms",
       description: "Download templates for budgeting, debt tracking, and goal setting.",
-      link: "#"
+      link: "/downloads"
     },
     {
       icon: <img src="/images/everydollar-logo.png" alt="EveryDollar" className="h-12 w-auto mt-8" />,
@@ -69,7 +69,7 @@ export default function Resources() {
     }
   ]
 
-  // Trusted Partners Section: 2 spots for each category
+  // Trusted Partners Section
   const partners = [
     // Financial Advisors
     {
@@ -101,51 +101,6 @@ export default function Resources() {
       description: "Born and raised locally with deep knowledge of the area. Determined, attentive, and always available for your call. High standards and strong focus on great results.",
       link: "https://www.windermere.com/directory/agents/tara-jo-hayes"
     },
-    // Mortgage Advisors
-    {
-      icon: <Briefcase className="h-12 w-12 text-soft-yellow" />,
-      businessName: "Mortgage Advisor 1",
-      serviceType: "Mortgage Services",
-      description: "Expert guidance for home buying, refinancing, and mortgage planning.",
-      link: "#"
-    },
-    {
-      icon: <Briefcase className="h-12 w-12 text-soft-yellow" />,
-      businessName: "Mortgage Advisor 2",
-      serviceType: "Mortgage Services",
-      description: "Competitive rates and personalized mortgage solutions.",
-      link: "#"
-    },
-    // Legal Services
-    {
-      icon: <Scale className="h-12 w-12 text-soft-yellow" />,
-      businessName: "Legal Partner 1",
-      serviceType: "Legal Services",
-      description: "Estate planning, wills, and trusts to protect your family's future.",
-      link: "#"
-    },
-    {
-      icon: <Scale className="h-12 w-12 text-soft-yellow" />,
-      businessName: "Legal Partner 2",
-      serviceType: "Legal Services",
-      description: "Comprehensive legal services for your personal and financial needs.",
-      link: "#"
-    },
-    // Tax Services
-    {
-      icon: <Heart className="h-12 w-12 text-soft-yellow" />,
-      businessName: "Tax Services 1",
-      serviceType: "Tax Preparation",
-      description: "Professional tax preparation and planning services year-round.",
-      link: "#"
-    },
-    {
-      icon: <Heart className="h-12 w-12 text-soft-yellow" />,
-      businessName: "Tax Services 2",
-      serviceType: "Tax Preparation",
-      description: "Expert tax advisors helping you maximize deductions and minimize liability.",
-      link: "#"
-    },
     // Counselors
     {
       icon: <img src="/images/Tabitha2 adjusted.webp" alt="Tabitha Ramos" className="h-32 w-32 object-cover rounded-full" style={{objectPosition: '50% 15%', filter: 'brightness(1.15)'}} />,
@@ -153,28 +108,6 @@ export default function Resources() {
       serviceType: "Counseling Services",
       description: "Passionate about helping women and couples overcome relationship challenges and grow their own way. Specializing in trauma treatment including EMDR therapy.",
       link: "https://growyourownwaytherapy.com/"
-    },
-    {
-      icon: <Users className="h-12 w-12 text-soft-yellow" />,
-      businessName: "Counselor 2",
-      serviceType: "Counseling Services",
-      description: "Compassionate support for mental health and relationship guidance.",
-      link: "#"
-    },
-    // Job Coaches
-    {
-      icon: <GraduationCap className="h-12 w-12 text-soft-yellow" />,
-      businessName: "Job Coach 1",
-      serviceType: "Career Coaching",
-      description: "Career coaching to help you find the right job or advance in your field.",
-      link: "#"
-    },
-    {
-      icon: <GraduationCap className="h-12 w-12 text-soft-yellow" />,
-      businessName: "Job Coach 2",
-      serviceType: "Career Coaching",
-      description: "Resume building, interview prep, and career transition support.",
-      link: "#"
     }
   ]
 
@@ -203,7 +136,7 @@ export default function Resources() {
               href={resource.link}
               target="_blank"
               rel="noopener noreferrer"
-              className="card group hover:bg-gradient-to-br hover:from-soft-blue-light hover:to-white transition-all duration-300 w-full sm:w-[calc(50%-0.75rem)] lg:w-[calc(25%-1.125rem)] max-w-sm flex flex-col"
+              className="card group hover:bg-gradient-to-br hover:from-soft-blue-light hover:to-white transition-all duration-300 w-full sm:w-[calc(50%-0.75rem)] lg:w-[calc(33.333%-1rem)] max-w-sm flex flex-col"
             >
               <div className="flex flex-col items-center text-center flex-grow">
                 <div className="mb-4 transform group-hover:scale-110 transition-transform duration-300">
@@ -234,7 +167,7 @@ export default function Resources() {
               href={info.link}
               target="_blank"
               rel="noopener noreferrer"
-              className="card group hover:bg-gradient-to-br hover:from-green-50 hover:to-white transition-all duration-300 w-full sm:w-[calc(50%-0.75rem)] lg:w-[calc(25%-1.125rem)] max-w-sm flex flex-col"
+              className="card group hover:bg-gradient-to-br hover:from-green-50 hover:to-white transition-all duration-300 w-full sm:w-[calc(50%-0.75rem)] lg:w-[calc(50%-0.75rem)] max-w-sm flex flex-col"
             >
               <div className="flex flex-col items-center text-center flex-grow">
                 <div className="mb-4 transform group-hover:scale-110 transition-transform duration-300">
@@ -265,7 +198,7 @@ export default function Resources() {
               href={partner.link}
               target="_blank"
               rel="noopener noreferrer"
-              className="card group hover:bg-gradient-to-br hover:from-soft-yellow-light hover:to-white transition-all duration-300 w-full sm:w-[calc(50%-0.75rem)] lg:w-[calc(25%-1.125rem)] max-w-sm flex flex-col"
+              className="card group hover:bg-gradient-to-br hover:from-soft-yellow-light hover:to-white transition-all duration-300 w-full sm:w-[calc(50%-0.75rem)] lg:w-[calc(33.333%-1rem)] max-w-sm flex flex-col"
             >
               <div className="flex flex-col items-center text-center flex-grow">
                 <p className="text-base font-semibold text-brand-red mb-2">{partner.serviceType}</p>
