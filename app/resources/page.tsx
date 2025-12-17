@@ -1,4 +1,13 @@
 import { ExternalLink, BookOpen, TrendingUp, PiggyBank, FileText, Lightbulb, BarChart3 } from 'lucide-react'
+import { Metadata } from 'next'
+import { createMetadata } from '../metadata'
+
+export const metadata: Metadata = createMetadata({
+  title: 'Financial Resources & Tools',
+  description: 'Access helpful financial calculators, budgeting apps, and educational resources. Connect with trusted financial partners including SmartVestor pros and real estate experts.',
+  keywords: ['financial calculators', 'budgeting apps', 'SmartVestor', 'financial education', 'financial resources'],
+  path: '/resources',
+})
 
 export default function Resources() {
   // Resources Section: Calculators, Forms, Apps

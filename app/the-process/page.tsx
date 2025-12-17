@@ -69,6 +69,8 @@ export default function TheProcess() {
               <button
                 onClick={() => setExpandedCard(expandedCard === index ? null : index)}
                 className="relative h-80 w-full flex flex-col items-center justify-center text-center cursor-pointer overflow-hidden rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 border-2 border-transparent hover:border-soft-blue/30"
+                aria-expanded={expandedCard === index}
+                aria-label={`Learn more about ${step.title}`}
               >
                 {/* Background Image */}
                 <div
@@ -113,10 +115,8 @@ export default function TheProcess() {
           <h2 className="text-3xl md:text-4xl font-bold mb-8 text-gray-900 drop-shadow-sm">
             Are you ready to take control of your future? Click the button below.
           </h2>
-          <Link href="/free-consultation">
-            <button className="btn-primary text-xl">
-              GET STARTED
-            </button>
+          <Link href="/free-consultation" className="btn-primary text-xl">
+            GET STARTED
           </Link>
         </div>
       </section>

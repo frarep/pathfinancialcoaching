@@ -3,13 +3,17 @@ import { Inter } from 'next/font/google'
 import './globals.css'
 import Header from '@/components/Header'
 import Footer from '@/components/Footer'
+import GoogleAnalytics from '@/components/GoogleAnalytics'
+import StructuredData from '@/components/StructuredData'
+import { createMetadata } from './metadata'
 
 const inter = Inter({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
-  title: 'Path Financial Coaching | Ramsey Preferred Financial Coach',
-  description: 'Transform your financial future with personalized coaching from a Ramsey Preferred Coach. Get out of debt, build wealth, and achieve financial peace.',
-  keywords: 'financial coaching, Ramsey Solutions, debt elimination, budgeting, financial planning, financial peace',
+  ...createMetadata({
+    title: 'Ramsey Preferred Financial Coach',
+    path: '/',
+  }),
   icons: {
     icon: [
       { url: '/favicon-16x16.png', sizes: '16x16', type: 'image/png' },
@@ -30,7 +34,11 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
+      <head>
+        <StructuredData />
+      </head>
       <body className={inter.className}>
+        <GoogleAnalytics />
         <Header />
         <main className="min-h-screen">
           {children}

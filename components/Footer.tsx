@@ -27,8 +27,9 @@ export default function Footer() {
               <button
                 onClick={copyEmailToClipboard}
                 className="inline-flex items-center gap-2 text-lg hover:text-soft-yellow-light transition-colors duration-200 cursor-pointer"
+                aria-label="Copy email address to clipboard"
               >
-                <Mail className="h-5 w-5" />
+                <Mail className="h-5 w-5" aria-hidden="true" />
                 EMAIL ME
               </button>
               {showCopied && (
@@ -36,16 +37,6 @@ export default function Footer() {
                   Email copied to clipboard!
                 </div>
               )}
-            </div>
-
-            <div>
-              <a
-                href="#coaching-promise"
-                className="inline-flex items-center gap-2 text-lg hover:text-soft-yellow-light transition-colors duration-200"
-              >
-                <ExternalLink className="h-5 w-5" />
-                Coaching Promise
-              </a>
             </div>
 
             <div>

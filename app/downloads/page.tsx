@@ -1,4 +1,13 @@
 import { FileText, Download } from 'lucide-react'
+import { Metadata } from 'next'
+import { createMetadata } from '../metadata'
+
+export const metadata: Metadata = createMetadata({
+  title: 'Free Downloads',
+  description: 'Download free financial worksheets, budget templates, and debt tracking tools. Get the resources you need to take control of your finances.',
+  keywords: ['financial worksheets', 'budget templates', 'debt tracker', 'free downloads', 'financial planning tools'],
+  path: '/downloads',
+})
 
 export default function Downloads() {
   // When you add PDFs to /public/downloads/, add them to this array

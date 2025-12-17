@@ -94,18 +94,24 @@ export default function About() {
               <button
                 onClick={() => setExpandedQuestion(expandedQuestion === index ? null : index)}
                 className="w-full flex items-center justify-between px-6 py-4 text-left hover:bg-white/30 transition-colors"
+                aria-expanded={expandedQuestion === index}
+                aria-controls={`answer-${index}`}
               >
-                <h3 className="text-lg md:text-xl font-bold text-gray-900 pr-4">{item.question}</h3>
+                <h3 id={`question-${index}`} className="text-lg md:text-xl font-bold text-gray-900 pr-4">{item.question}</h3>
                 <ChevronDown
                   className={`flex-shrink-0 h-6 w-6 text-gray-600 transition-transform duration-300 ${
                     expandedQuestion === index ? 'rotate-180' : ''
                   }`}
+                  aria-hidden="true"
                 />
               </button>
               <div
+                id={`answer-${index}`}
                 className={`overflow-hidden transition-all duration-300 ease-in-out ${
                   expandedQuestion === index ? 'max-h-[500px] opacity-100' : 'max-h-0 opacity-0'
                 }`}
+                role="region"
+                aria-labelledby={`question-${index}`}
               >
                 <div className="px-6 pb-6 pt-2">
                   <p className="text-gray-700 leading-relaxed">{item.answer}</p>
@@ -125,10 +131,8 @@ export default function About() {
           <p className="text-xl md:text-2xl text-gray-800 mb-8 font-medium">
             MAKE THE CHANGE TODAY!
           </p>
-          <Link href="/free-consultation">
-            <button className="btn-primary text-xl">
-              GET STARTED
-            </button>
+          <Link href="/free-consultation" className="btn-primary text-xl">
+            GET STARTED
           </Link>
         </div>
       </section>

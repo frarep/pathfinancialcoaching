@@ -102,15 +102,11 @@ export default function Home() {
               </div>
 
               <div className="flex flex-col sm:flex-row gap-4 pt-4 justify-center">
-                <Link href="/about">
-                  <button className="btn-primary text-lg w-full sm:w-auto">
-                    LEARN MORE
-                  </button>
+                <Link href="/about" className="btn-primary text-lg w-full sm:w-auto text-center">
+                  LEARN MORE
                 </Link>
-                <Link href="/free-consultation">
-                  <button className="btn-primary text-lg w-full sm:w-auto">
-                    GET STARTED
-                  </button>
+                <Link href="/free-consultation" className="btn-primary text-lg w-full sm:w-auto text-center">
+                  GET STARTED
                 </Link>
               </div>
             </div>
