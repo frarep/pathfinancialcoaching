@@ -208,7 +208,7 @@ export default function FreeConsultation() {
           <form onSubmit={handleSubmit} className="space-y-6">
             {/* First Name */}
             <div>
-              <label htmlFor="firstName" className="flex items-center text-base font-bold text-gray-900 mb-2 px-2 py-1 bg-white/70 rounded-md w-fit backdrop-blur-sm">
+              <label htmlFor="firstName" className="flex items-center text-base font-bold text-gray-900 mb-2 px-2 py-1 bg-white rounded-md w-fit">
                 First Name *
                 <ValidationIndicator fieldName="firstName" />
               </label>
@@ -219,7 +219,7 @@ export default function FreeConsultation() {
                 value={formData.firstName}
                 onChange={handleChange}
                 onBlur={() => handleBlur('firstName')}
-                className={`w-full px-4 py-3 rounded-lg border bg-white/90 backdrop-blur-sm ${
+                className={`w-full px-4 py-3 rounded-lg border bg-white ${
                   errors.firstName ? 'border-red-500' : 'border-gray-300'
                 } focus:ring-2 focus:ring-soft-blue focus:border-transparent transition-all`}
                 placeholder="John"
@@ -231,7 +231,7 @@ export default function FreeConsultation() {
 
             {/* Last Name */}
             <div>
-              <label htmlFor="lastName" className="flex items-center text-base font-bold text-gray-900 mb-2 px-2 py-1 bg-white/70 rounded-md w-fit backdrop-blur-sm">
+              <label htmlFor="lastName" className="flex items-center text-base font-bold text-gray-900 mb-2 px-2 py-1 bg-white rounded-md w-fit">
                 Last Name *
                 <ValidationIndicator fieldName="lastName" />
               </label>
@@ -242,7 +242,7 @@ export default function FreeConsultation() {
                 value={formData.lastName}
                 onChange={handleChange}
                 onBlur={() => handleBlur('lastName')}
-                className={`w-full px-4 py-3 rounded-lg border bg-white/90 backdrop-blur-sm ${
+                className={`w-full px-4 py-3 rounded-lg border bg-white ${
                   errors.lastName ? 'border-red-500' : 'border-gray-300'
                 } focus:ring-2 focus:ring-soft-blue focus:border-transparent transition-all`}
                 placeholder="Doe"
@@ -254,7 +254,7 @@ export default function FreeConsultation() {
 
             {/* Email */}
             <div>
-              <label htmlFor="email" className="flex items-center text-base font-bold text-gray-900 mb-2 px-2 py-1 bg-white/70 rounded-md w-fit backdrop-blur-sm">
+              <label htmlFor="email" className="flex items-center text-base font-bold text-gray-900 mb-2 px-2 py-1 bg-white rounded-md w-fit">
                 Email *
                 <ValidationIndicator fieldName="email" />
               </label>
@@ -265,7 +265,7 @@ export default function FreeConsultation() {
                 value={formData.email}
                 onChange={handleChange}
                 onBlur={() => handleBlur('email')}
-                className={`w-full px-4 py-3 rounded-lg border bg-white/90 backdrop-blur-sm ${
+                className={`w-full px-4 py-3 rounded-lg border bg-white ${
                   errors.email ? 'border-red-500' : 'border-gray-300'
                 } focus:ring-2 focus:ring-soft-blue focus:border-transparent transition-all`}
                 placeholder="john.doe@example.com"
@@ -277,7 +277,7 @@ export default function FreeConsultation() {
 
             {/* Phone Number */}
             <div>
-              <label htmlFor="phone" className="flex items-center text-base font-bold text-gray-900 mb-2 px-2 py-1 bg-white/70 rounded-md w-fit backdrop-blur-sm">
+              <label htmlFor="phone" className="flex items-center text-base font-bold text-gray-900 mb-2 px-2 py-1 bg-white rounded-md w-fit">
                 Phone Number *
                 <ValidationIndicator fieldName="phone" />
               </label>
@@ -288,7 +288,7 @@ export default function FreeConsultation() {
                 value={formData.phone}
                 onChange={handleChange}
                 onBlur={() => handleBlur('phone')}
-                className={`w-full px-4 py-3 rounded-lg border bg-white/90 backdrop-blur-sm ${
+                className={`w-full px-4 py-3 rounded-lg border bg-white ${
                   errors.phone ? 'border-red-500' : 'border-gray-300'
                 } focus:ring-2 focus:ring-soft-blue focus:border-transparent transition-all`}
                 placeholder="(555) 123-4567"
@@ -300,7 +300,7 @@ export default function FreeConsultation() {
 
             {/* Goals */}
             <div>
-              <label htmlFor="goals" className="flex items-center text-base font-bold text-gray-900 mb-2 px-2 py-1 bg-white/70 rounded-md w-fit backdrop-blur-sm">
+              <label htmlFor="goals" className="flex items-center text-base font-bold text-gray-900 mb-2 px-2 py-1 bg-white rounded-md w-fit">
                 What Goals Are You Looking To Achieve? *
                 <ValidationIndicator fieldName="goals" />
               </label>
@@ -311,7 +311,7 @@ export default function FreeConsultation() {
                 onChange={handleChange}
                 onBlur={() => handleBlur('goals')}
                 rows={6}
-                className={`w-full px-4 py-3 rounded-lg border bg-white/90 backdrop-blur-sm ${
+                className={`w-full px-4 py-3 rounded-lg border bg-white ${
                   errors.goals ? 'border-red-500' : 'border-gray-300'
                 } focus:ring-2 focus:ring-soft-blue focus:border-transparent transition-all resize-vertical`}
                 placeholder="Give a detailed example"

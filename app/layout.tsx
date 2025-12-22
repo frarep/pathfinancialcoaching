@@ -5,11 +5,12 @@ import Header from '@/components/Header'
 import Footer from '@/components/Footer'
 import GoogleAnalytics from '@/components/GoogleAnalytics'
 import StructuredData from '@/components/StructuredData'
-import { createMetadata } from './metadata'
+import { createMetadata, siteConfig } from './metadata'
 
 const inter = Inter({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
+  metadataBase: new URL(siteConfig.url),
   ...createMetadata({
     title: 'Ramsey Preferred Financial Coach',
     path: '/',

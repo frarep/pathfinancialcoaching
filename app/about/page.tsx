@@ -2,7 +2,7 @@
 
 import Link from 'next/link'
 import { useState } from 'react'
-import { User, ChevronDown } from 'lucide-react'
+import { ChevronDown } from 'lucide-react'
 
 export default function About() {
   const [expandedQuestion, setExpandedQuestion] = useState<number | null>(null)
@@ -57,14 +57,19 @@ export default function About() {
       {/* About Section */}
       <section className="section-container">
         <div className="grid md:grid-cols-2 gap-12 items-start max-w-6xl mx-auto">
-          {/* Photo Placeholder */}
+          {/* Photo */}
           <div className="order-1 md:order-1">
-            <div className="relative rounded-2xl overflow-hidden shadow-2xl aspect-[4/5] bg-gradient-to-br from-soft-blue to-soft-yellow flex items-center justify-center">
-              <User className="h-48 w-48 text-white opacity-50" />
-              <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/60 to-transparent p-6">
-                <p className="text-white text-center font-semibold text-xl">Patrick Frare</p>
-                <p className="text-white text-center">Financial Coach</p>
-              </div>
+            <div className="relative rounded-2xl overflow-hidden shadow-2xl aspect-[4/5]">
+              <picture>
+                <source srcSet="/images/patrick-amanda-optimized.webp" type="image/webp" />
+                <img
+                  src="/images/patrick-amanda-optimized.jpg"
+                  alt="Patrick and Amanda Frare"
+                  width="1200"
+                  height="900"
+                  className="absolute inset-0 w-full h-full object-cover"
+                />
+              </picture>
             </div>
           </div>
 

@@ -20,8 +20,8 @@ export default function Header() {
       <nav className="max-w-full mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-20">
           {/* Logo/Brand - Far Left */}
-          <Link href="/" className="flex-shrink-0 mr-8">
-            <h1 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-bold bg-gradient-to-r from-blue-700 to-orange-500 bg-clip-text text-transparent hover:opacity-80 transition-opacity whitespace-nowrap">
+          <Link href="/" className="flex-shrink-0 mr-4 sm:mr-8">
+            <h1 className="text-sm sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl font-bold bg-gradient-to-r from-blue-700 to-orange-500 bg-clip-text text-transparent hover:opacity-80 transition-opacity">
               PATH FINANCIAL COACHING
             </h1>
           </Link>
@@ -43,7 +43,7 @@ export default function Header() {
           {/* Mobile Menu Button */}
           <button
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="lg:hidden p-2 rounded-lg hover:bg-gray-100 transition-colors flex-shrink-0"
+            className="lg:hidden p-3 rounded-lg hover:bg-gray-100 transition-colors flex-shrink-0"
             aria-label="Toggle mobile menu"
           >
             {mobileMenuOpen ? (
@@ -63,7 +63,7 @@ export default function Header() {
                   key={link.href}
                   href={link.href}
                   onClick={() => setMobileMenuOpen(false)}
-                  className="text-gray-700 hover:text-brand-red font-bold text-lg transition-colors duration-200 py-2"
+                  className="text-gray-700 hover:text-brand-red font-bold text-lg transition-colors duration-200 py-3"
                 >
                   {link.label}
                 </Link>

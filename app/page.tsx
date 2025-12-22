@@ -1,5 +1,4 @@
 import Link from 'next/link'
-import { Image } from 'lucide-react'
 
 export default function Home() {
   const helpItems = [
@@ -25,7 +24,7 @@ export default function Home() {
               className="absolute inset-0 w-full h-full object-cover"
             />
             <div className="absolute inset-0 bg-black/30 flex flex-col items-center justify-center">
-              <h1 className="text-white text-4xl md:text-5xl font-bold mb-2 drop-shadow-lg">Make Your Dreams A Reality</h1>
+              <h1 className="text-white text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold mb-2 drop-shadow-lg">Make Your Dreams A Reality</h1>
             </div>
             <p className="absolute bottom-4 right-4 text-white text-sm opacity-70 drop-shadow-md">Photo by Pablo Heimplatz</p>
           </div>
@@ -55,13 +54,16 @@ export default function Home() {
             {helpItems.map((item, index) => (
               <div
                 key={index}
-                className="flex items-center gap-4 py-4 pl-6 pr-8 rounded-full bg-white/80 backdrop-blur-sm shadow-md hover:shadow-lg transition-all duration-300 transform hover:-translate-y-1"
+                className="flex items-center gap-3 sm:gap-4 py-3 sm:py-4 px-3 sm:px-6 md:px-8 rounded-full bg-white shadow-md hover:shadow-lg transition-all duration-300 transform hover:-translate-y-1"
               >
                 {item.icon ? (
-                  <div className="flex-shrink-0 w-16 h-16 flex items-center justify-center">
+                  <div className="flex-shrink-0 w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 flex items-center justify-center">
                     <img
                       src={item.icon}
                       alt={item.text}
+                      width="64"
+                      height="64"
+                      loading="eager"
                       className="w-full h-full object-contain"
                     />
                   </div>
@@ -72,7 +74,7 @@ export default function Home() {
                     </div>
                   </div>
                 )}
-                <p className="text-lg font-medium text-gray-800 text-center flex-1">
+                <p className="text-sm sm:text-base md:text-lg font-medium text-gray-800 text-center flex-1">
                   {item.text}
                 </p>
               </div>
@@ -111,13 +113,17 @@ export default function Home() {
               </div>
             </div>
 
-            {/* Right Column - Headshot Placeholder */}
+            {/* Right Column - Headshot */}
             <div className="order-first md:order-last">
-              <div className="relative rounded-2xl overflow-hidden shadow-2xl aspect-[3/4] bg-gradient-to-br from-soft-blue to-soft-yellow flex items-center justify-center">
-                <Image className="h-32 w-32 text-white opacity-40" />
-                <div className="absolute inset-0 flex items-center justify-center">
-                  <p className="text-white text-xl font-semibold opacity-60">Professional Headshot</p>
-                </div>
+              <div className="relative rounded-2xl overflow-hidden shadow-2xl aspect-[3/4]">
+                <picture>
+                  <source srcSet="/images/patrick-headshot-optimized.webp" type="image/webp" />
+                  <img
+                    src="/images/patrick-headshot-optimized.jpg"
+                    alt="Patrick Frare - Financial Coach"
+                    className="absolute inset-0 w-full h-full object-cover"
+                  />
+                </picture>
               </div>
             </div>
           </div>

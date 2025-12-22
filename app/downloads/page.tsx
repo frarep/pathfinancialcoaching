@@ -86,7 +86,7 @@ export default function Downloads() {
       </section>
 
       {/* Instructions Section */}
-      <section className="section-container bg-white/60 backdrop-blur-sm">
+      <section className="section-container bg-white">
         <div className="max-w-3xl mx-auto card">
           <h2 className="text-2xl font-bold mb-4 text-gray-900 text-center">How to Use These Resources</h2>
           <ul className="text-gray-700 space-y-3">
