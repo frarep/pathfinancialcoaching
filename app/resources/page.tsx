@@ -13,7 +13,7 @@ export default function Resources() {
   // Resources Section: Calculators, Forms, Apps
   const resources = [
     {
-      icon: <img src="/images/flat-blue-50-ramsey-logo.svg" alt="Ramsey Solutions" width="120" height="48" className="h-10 sm:h-12 w-auto" />,
+      icon: <img src="/images/flat-blue-50-ramsey-logo.svg" alt="Ramsey Solutions" width="120" height="48" className="h-10 sm:h-12 w-auto" loading="eager" />,
       title: "Budget Calculator",
       description: "The budget calculator helps you see where you stand with your money right now.",
       link: "https://www.ramseysolutions.com/budgeting/budget-calculator"
@@ -25,13 +25,13 @@ export default function Resources() {
       link: "#"
     },
     {
-      icon: <img src="/images/Social Security Logo.svg" alt="Social Security Administration" width="120" height="48" className="h-10 sm:h-12 w-auto" />,
+      icon: <img src="/images/Social Security Logo.svg" alt="Social Security Administration" width="120" height="48" className="h-10 sm:h-12 w-auto" loading="eager" />,
       title: "Social Security Calculator",
       description: "Estimate your Social Security benefits and plan for retirement income.",
       link: "https://www.ssa.gov/OACT/quickcalc/index.html"
     },
     {
-      icon: <img src="/images/flat-blue-50-ramsey-logo.svg" alt="Ramsey Solutions" width="120" height="48" className="h-10 sm:h-12 w-auto" />,
+      icon: <img src="/images/flat-blue-50-ramsey-logo.svg" alt="Ramsey Solutions" width="120" height="48" className="h-10 sm:h-12 w-auto" loading="eager" />,
       title: "Retirement Calculator",
       description: "Calculate how much you need to save for a comfortable retirement.",
       link: "https://www.ramseysolutions.com/retirement/retirement-calculator"
@@ -43,7 +43,7 @@ export default function Resources() {
       link: "/downloads"
     },
     {
-      icon: <img src="/images/everydollar-logo.png" alt="EveryDollar" width="120" height="48" className="h-10 sm:h-12 w-auto mt-4 sm:mt-8" />,
+      icon: <img src="/images/everydollar-logo.png" alt="EveryDollar" width="120" height="48" className="h-10 sm:h-12 w-auto mt-4 sm:mt-8" loading="eager" />,
       title: "",
       description: "Ramsey's free budgeting app to create and track your monthly budget on any device.",
       link: "https://www.ramseysolutions.com/money/everydollar"
@@ -82,14 +82,14 @@ export default function Resources() {
   const partners = [
     // Financial Advisors
     {
-      icon: <img src="/images/SmartVestor-Logo-Ramsey-Color-5-21-1117436319.png" alt="SmartVestor" width="120" height="48" className="h-10 sm:h-12 w-auto mt-4 sm:mt-8 mb-8 sm:mb-12" />,
+      icon: <img src="/images/SmartVestor-Logo-Ramsey-Color-5-21-1117436319.png" alt="SmartVestor" width="120" height="48" className="h-10 sm:h-12 w-auto mt-4 sm:mt-8 mb-8 sm:mb-12" loading="eager" />,
       businessName: "\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0",
       serviceType: "Financial Advisors",
       description: "Ramsey-trusted investment professionals who can help you plan for your financial future.",
       link: "https://www.ramseysolutions.com/retirement/smartvestor"
     },
     {
-      icon: <img src="/images/derek-a-gilbert_0171d_400x490.webp" alt="Derek Gilbert" width="128" height="128" className="h-24 w-24 sm:h-28 sm:w-28 md:h-32 md:w-32 object-cover rounded-full" style={{objectPosition: '45% 0%', filter: 'brightness(1.15)'}} />,
+      icon: <img src="/images/derek-a-gilbert_0171d_400x490.webp" alt="Derek Gilbert" width="128" height="128" className="h-24 w-24 sm:h-28 sm:w-28 md:h-32 md:w-32 object-cover rounded-full" style={{objectPosition: '45% 0%', filter: 'brightness(1.15)'}} loading="eager" />,
       businessName: "Derek Gilbert",
       serviceType: "Financial Advisor",
       description: "Experienced financial advisor providing personalized investment and retirement planning.",
@@ -97,14 +97,14 @@ export default function Resources() {
     },
     // Real Estate
     {
-      icon: <img src="/images/Annesha.webp" alt="Annesha Montez" width="128" height="128" className="h-24 w-24 sm:h-28 sm:w-28 md:h-32 md:w-32 object-cover rounded-full" style={{objectPosition: '50% 0%', filter: 'brightness(1.15)'}} />,
+      icon: <img src="/images/Annesha.webp" alt="Annesha Montez" width="128" height="128" className="h-24 w-24 sm:h-28 sm:w-28 md:h-32 md:w-32 object-cover rounded-full" style={{objectPosition: '50% 0%', filter: 'brightness(1.15)'}} loading="eager" />,
       businessName: "Annesha Montez",
       serviceType: "Real Estate",
       description: "Trusted real estate professional with extensive market expertise. Dedicated to making your home buying and selling process smooth and stress-free.",
       link: "https://www.anneshamontez.realtor/"
     },
     {
-      icon: <img src="/images/Tara jo.webp" alt="Tara Jo Hayes" width="128" height="128" className="h-24 w-24 sm:h-28 sm:w-28 md:h-32 md:w-32 object-cover rounded-full" style={{objectPosition: '50% 15%', filter: 'brightness(1.15)'}} />,
+      icon: <img src="/images/Tara jo.webp" alt="Tara Jo Hayes" width="128" height="128" className="h-24 w-24 sm:h-28 sm:w-28 md:h-32 md:w-32 object-cover rounded-full" style={{objectPosition: '50% 15%', filter: 'brightness(1.15)'}} loading="eager" />,
       businessName: "Tara Jo Hayes",
       serviceType: "Real Estate",
       description: "Born and raised locally with deep knowledge of the area. Determined, attentive, and always available for your call. High standards and strong focus on great results.",
@@ -112,7 +112,7 @@ export default function Resources() {
     },
     // Counselors
     {
-      icon: <img src="/images/Tabitha2 adjusted.webp" alt="Tabitha Ramos" width="128" height="128" className="h-24 w-24 sm:h-28 sm:w-28 md:h-32 md:w-32 object-cover rounded-full" style={{objectPosition: '50% 15%', filter: 'brightness(1.15)'}} />,
+      icon: <img src="/images/Tabitha2 adjusted.webp" alt="Tabitha Ramos" width="128" height="128" className="h-24 w-24 sm:h-28 sm:w-28 md:h-32 md:w-32 object-cover rounded-full" style={{objectPosition: '50% 15%', filter: 'brightness(1.15)'}} loading="eager" />,
       businessName: "Tabitha Ramos, LCSW",
       serviceType: "Counseling Services",
       description: "Passionate about helping women and couples overcome relationship challenges and grow their own way. Specializing in trauma treatment including EMDR therapy.",
@@ -164,7 +164,7 @@ export default function Resources() {
       </section>
 
       {/* Additional Information Section */}
-      <section className="section-container bg-white">
+      <section className="section-container">
         <h2 className="section-title">Additional Information</h2>
         <p className="section-subtitle">
           Educational content to expand your financial knowledge
@@ -227,7 +227,7 @@ export default function Resources() {
       </section>
 
       {/* Note Section */}
-      <section className="section-container bg-white">
+      <section className="section-container">
         <div className="max-w-3xl mx-auto text-center card">
           <p className="text-gray-700 leading-relaxed">
             <strong>Note:</strong> The resources and partners listed on this page are recommendations based on quality and trustworthiness. I may receive referral compensation from some partners, but I only recommend services I truly believe will benefit your financial journey.
