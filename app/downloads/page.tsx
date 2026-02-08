@@ -9,9 +9,16 @@ export const metadata: Metadata = createMetadata({
   path: '/downloads',
 })
 
+type Document = {
+  title: string
+  description: string
+  filename: string
+  category: string
+}
+
 export default function Downloads() {
   // When you add PDFs to /public/downloads/, add them to this array
-  const documents = [
+  const documents: Document[] = [
     // Example structure - uncomment and modify when you add actual files:
     // {
     //   title: "Monthly Budget Worksheet",
