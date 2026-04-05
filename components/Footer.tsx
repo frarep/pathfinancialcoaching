@@ -1,6 +1,6 @@
 'use client'
 
-import { Mail, ExternalLink } from 'lucide-react'
+import { Mail } from 'lucide-react'
 import { useState } from 'react'
 
 export default function Footer() {
@@ -22,7 +22,7 @@ export default function Footer() {
             GET IN TOUCH
           </h3>
 
-          <div className="space-y-4 mb-8">
+          <div className="mb-8">
             <div className="relative inline-block">
               <button
                 onClick={copyEmailToClipboard}
@@ -37,18 +37,6 @@ export default function Footer() {
                   Email copied to clipboard!
                 </div>
               )}
-            </div>
-
-            <div>
-              <a
-                href="https://ramseycoach.com/Path-Financial-Coaching"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 text-lg hover:text-soft-yellow-light transition-colors duration-200"
-              >
-                RPC Profile
-                <ExternalLink className="h-5 w-5" />
-              </a>
             </div>
           </div>
 

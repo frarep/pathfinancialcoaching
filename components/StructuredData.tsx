@@ -15,11 +15,8 @@ export default function StructuredData() {
     founder: {
       '@type': 'Person',
       name: 'Patrick Frare',
-      jobTitle: 'Ramsey Preferred Financial Coach',
+      jobTitle: 'Ramsey Trained Master Financial Coach',
     },
-    sameAs: [
-      'https://ramseycoach.com/Path-Financial-Coaching',
-    ],
     hasOfferCatalog: {
       '@type': 'OfferCatalog',
       name: 'Financial Coaching Services',
