@@ -1,93 +1,55 @@
 # Next Session — Resume Here
 
-## ✅ What We Completed This Session (April 7, 2026)
+## Session Summary (April 12, 2026)
 
-### 4 Interactive Financial Worksheets — ALL BUILT & LIVE
-
-All 4 tools are at `/downloads/*`, accessible from the Downloads hub page.
-All committed and pushed to GitHub (commit: b3734e3).
+Reviewed and refined all 4 interactive financial worksheets, then cleaned up the Resources page.
 
 ---
 
-## 🔍 FIRST THING: Preview in Dev Server
+## What Was Fixed & Improved
 
-Run the dev server to test all 4 worksheets before doing anything else:
+### All Worksheets
+- Removed the large red icon above each worksheet title
+- Fixed blank first/third page issue on PDF export (root cause: `page-break-inside: avoid` on top-level section + incorrect print CSS)
 
-```bash
-cd /root/pathfinancialcoaching
-npm run dev
-```
+### Goal-Setting Worksheet
+- PDF print fix: `@page { margin: 0.6in; }`, `html, body { margin: 0; padding: 0; }`, switched from `setTimeout` to `onload` for print trigger
+- Moved `page-break-inside: avoid` from the full goal section down to individual SMART items and action items
 
-Then open in browser and test each page:
+### Debt Snowball Calculator
+- Added **Total Debt Balance** and **Total Monthly Payment** totals row below "+ Add Debt" (aligned to columns, centered headers)
+- Added **Debt-Free In** callout at bottom of snowball plan (full words: "2 years 4 months") — also appears in PDF
+- Enter key moves cursor to next row (same column)
+- Trash button removed from tab order (`tabIndex={-1}`)
+- All abbreviations removed: "Min." → "Minimum", "Est." → "Estimated", "yr/mo" → "year/month"
 
-| Page | URL |
-|------|-----|
-| Downloads Hub | http://localhost:3000/downloads |
-| Goal-Setting Worksheet | http://localhost:3000/downloads/goal-setting |
-| Budget Worksheet | http://localhost:3000/downloads/budget-worksheet |
-| Debt Snowball Calculator | http://localhost:3000/downloads/debt-calculator |
-| Baby Steps Tracker | http://localhost:3000/downloads/baby-steps |
+### Budget Worksheet
+- PDF fix: added `print-color-adjust: exact` so red headers and dark total rows print correctly
 
-### Things to Test on Each Page:
-- Fill in some sample data
-- Add/remove items (budget categories, debts, goals)
-- Click "Download as PDF" → verify print dialog opens with correct data
-- Check mobile layout (resize browser)
+### Baby Steps Tracker
+- Current step now **auto-calculates** from completed steps (finds first incomplete step in order)
+- User can **manually override** via the dropdown — shows "Manual override · Reset to auto"
 
----
-
-## What Was Built
-
-### #1 Goal-Setting Worksheet (`/downloads/goal-setting`)
-- SMART framework (Specific, Measurable, Achievable, Relevant, Time-Bound)
-- Multiple goals — add/collapse/remove
-- 7 / 30 / 90 day action steps per goal
-- Obstacles & how to overcome them
-- Accountability partner field
-- PDF export via print dialog
-
-### #2 Monthly Budget Worksheet (`/downloads/budget-worksheet`)
-- EveryDollar-style zero-based budgeting
-- Default categories: Giving, Saving, Housing, Transportation, Food, Personal, Health, Lifestyle, Debt Payments
-- Add / remove / rename categories
-- Add / remove line items within each category
-- Budgeted vs Actual columns with auto-totaling
-- Zero-based summary (goal = $0.00 remaining)
-- PDF export
-
-### #3 Debt Snowball Calculator (`/downloads/debt-calculator`)
-- Enter debts: name, balance, minimum payment, interest rate
-- Optional extra monthly payment field
-- Auto-sorts by smallest balance (snowball method)
-- Shows each debt's: total payment, payoff time, estimated interest
-- Rolls freed-up payments forward as debts are paid off
-- PDF export with full snowball plan
-
-### #4 Baby Steps Tracker (`/downloads/baby-steps`)
-- All 7 Dave Ramsey Baby Steps displayed
-- Highlights current step (user selects)
-- Status per step: Not Started / In Progress / Complete
-- Progress bar showing % complete
-- Per-step: progress/amount field, target date, notes
-- PDF export
+### Resources Page
+- Removed Ramsey Budget Calculator card (redundant with our Budget Worksheet)
+- Removed Debt Payoff Calculator card (redundant with our Debt Snowball Calculator)
 
 ---
 
-## Possible Next Steps (choose at next session)
+## Possible Next Steps
 
-1. **Test & refine** — after previewing, may want tweaks to layout, copy, or features
-2. **Add worksheets to the Resources page** — link to /downloads from the resources page tools section
-3. **Navigation update** — add "Worksheets" or "Tools" link in the header nav
-4. **About page photo** — add a professional photo of Coach Patrick
-5. **Testimonials section** — add client success stories to homepage
-6. **Blog / articles** — financial education content for SEO
+1. **Add worksheets to the Resources page** — link to /downloads from the resources tools section
+2. **Navigation update** — add "Worksheets" or "Tools" link in the header nav
+3. **About page photo** — add a professional photo of Coach Patrick
+4. **Testimonials section** — add client success stories to homepage
+5. **Blog / articles** — financial education content for SEO
 
 ---
 
 ## Current Project Status
-- ✅ All pages functional (6 original + 4 new worksheet pages)
-- ✅ Build passing with no errors (14 static pages)
-- ✅ Latest changes pushed to GitHub (commit b3734e3)
-- ✅ Dev server ready to run
+- ✅ All 4 worksheets functional and polished
+- ✅ PDF export working correctly on all worksheets
+- ✅ Resources page cleaned up
+- ✅ Pushed to GitHub
 
-**Last updated:** April 7, 2026
+**Last updated:** April 12, 2026

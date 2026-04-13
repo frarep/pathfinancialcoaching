@@ -1,7 +1,7 @@
 'use client'
 
 import { useState, useMemo } from 'react'
-import { Plus, Trash2, Download, CreditCard, ArrowDown } from 'lucide-react'
+import { Plus, Trash2, Download, ArrowDown } from 'lucide-react'
 
 interface Debt {
   id: number
@@ -19,9 +19,11 @@ function fmtMonths(m: number) {
   if (m < 1) return '< 1 month'
   const y = Math.floor(m / 12)
   const mo = m % 12
-  if (y === 0) return `${mo} mo`
-  if (mo === 0) return `${y} yr`
-  return `${y} yr ${mo} mo`
+  const yearStr = y === 1 ? '1 year' : `${y} years`
+  const moStr = mo === 1 ? '1 month' : `${mo} months`
+  if (y === 0) return moStr
+  if (mo === 0) return yearStr
+  return `${yearStr} ${moStr}`
 }
 
 function calcPayoffMonths(balance: number, rate: number, payment: number): number {
@@ -55,6 +57,7 @@ function generatePDF(debts: Debt[], name: string, extraPayment: string) {
   const totalMin = debts.reduce((s, d) => s + parseNum(d.minPayment), 0)
 
   let runningExtra = extra
+  let debtFreeMonths = 0
   const rows = sorted.map((debt, i) => {
     const balance = parseNum(debt.balance)
     const min = parseNum(debt.minPayment)
@@ -62,6 +65,7 @@ function generatePDF(debts: Debt[], name: string, extraPayment: string) {
     const payment = min + runningExtra
     const months = calcPayoffMonths(balance, rate, payment)
     const interest = calcTotalInterest(balance, rate, payment)
+    debtFreeMonths = months
     const result = `
       <tr style="${i % 2 === 0 ? 'background:#F9FAFB;' : ''}">
         <td style="padding:8px;"><strong style="color:#DC2626;">#${i + 1}</strong> ${debt.name}</td>
@@ -75,6 +79,12 @@ function generatePDF(debts: Debt[], name: string, extraPayment: string) {
     runningExtra += min
     return result
   }).join('')
+  const debtFreeHTML = debtFreeMonths > 0 && debtFreeMonths < 999
+    ? `<div style="text-align:center;margin-top:20px;padding:14px;background:#FEF2F2;border:1px solid #FECACA;border-radius:8px;">
+        <div style="font-size:11px;color:#6B7280;text-transform:uppercase;letter-spacing:0.05em;font-weight:600;margin-bottom:4px;">Debt-Free In</div>
+        <div style="font-size:22px;font-weight:bold;color:#DC2626;">${fmtMonths(debtFreeMonths)}</div>
+      </div>`
+    : ''
 
   const html = `<!DOCTYPE html>
 <html>
@@ -109,7 +119,7 @@ function generatePDF(debts: Debt[], name: string, extraPayment: string) {
   </div>
   <div class="summary">
     <div class="summary-box"><div class="label">Total Debt</div><div class="value">${fmt(totalBalance)}</div></div>
-    <div class="summary-box"><div class="label">Total Min. Payments</div><div class="value">${fmt(totalMin)}</div></div>
+    <div class="summary-box"><div class="label">Total Minimum Payments</div><div class="value">${fmt(totalMin)}</div></div>
     <div class="summary-box"><div class="label">Number of Debts</div><div class="value">${debts.length}</div></div>
   </div>
   <div class="explainer">
@@ -120,15 +130,16 @@ function generatePDF(debts: Debt[], name: string, extraPayment: string) {
       <tr>
         <th>Debt (Payoff Order)</th>
         <th>Balance</th>
-        <th>Min. Payment</th>
+        <th>Minimum Payment</th>
         <th>Interest Rate</th>
         <th>Total Payment</th>
         <th>Payoff Time</th>
-        <th>Est. Interest</th>
+        <th>Estimated Interest</th>
       </tr>
     </thead>
     <tbody>${rows}</tbody>
   </table>
+  ${debtFreeHTML}
   <div class="footer">
     <p>Path Financial Coaching | pathfinancialcoaching.com</p>
     <p>Coach Patrick Frare — Ramsey Trained Master Financial Coach</p>
@@ -157,6 +168,14 @@ export default function DebtCalculator() {
 
   const updateDebt = (id: number, field: keyof Debt, val: string) =>
     setDebts(prev => prev.map(d => d.id === id ? { ...d, [field]: val } : d))
+
+  const handleEnter = (e: React.KeyboardEvent<HTMLInputElement>, row: number, col: number) => {
+    if (e.key === 'Enter') {
+      e.preventDefault()
+      const next = document.querySelector<HTMLInputElement>(`[data-row="${row + 1}"][data-col="${col}"]`)
+      next?.focus()
+    }
+  }
 
   // Snowball: sort by balance ascending, roll payments forward
   const snowball = useMemo(() => {
@@ -191,9 +210,6 @@ export default function DebtCalculator() {
       {/* Hero */}
       <section className="section-container py-16">
         <div className="max-w-4xl mx-auto text-center">
-          <div className="flex justify-center mb-4">
-            <CreditCard className="h-14 w-14 text-brand-red" />
-          </div>
           <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-4 text-gray-900">
             DEBT SNOWBALL CALCULATOR
           </h1>
@@ -237,25 +253,29 @@ export default function DebtCalculator() {
           {/* Debt Entries */}
           <div className="card">
             <h2 className="font-bold text-gray-900 mb-3">Your Debts</h2>
-            <div className="grid grid-cols-[1fr_90px_90px_80px_32px] gap-1 px-1 py-1 text-xs font-bold text-gray-500 uppercase tracking-wide">
-              <span>Debt Name</span>
-              <span className="text-right">Balance</span>
-              <span className="text-right">Min. Payment</span>
-              <span className="text-right">Rate %</span>
+            <div className="grid grid-cols-[1fr_90px_90px_80px_32px] gap-1 px-1 py-1 text-xs font-bold text-gray-500 uppercase tracking-wide text-center">
+              <span className="text-left">Debt Name</span>
+              <span>Balance</span>
+              <span>Minimum Payment</span>
+              <span>Rate %</span>
               <span />
             </div>
             <div className="space-y-1.5">
-              {debts.map(debt => (
+              {debts.map((debt, index) => (
                 <div key={debt.id} className="grid grid-cols-[1fr_90px_90px_80px_32px] gap-1 items-center px-1">
                   <input value={debt.name} onChange={e => updateDebt(debt.id, 'name', e.target.value)}
+                    data-row={index} data-col={0} onKeyDown={e => handleEnter(e, index, 0)}
                     className={inputClass} placeholder="Debt name" />
                   <input value={debt.balance} onChange={e => updateDebt(debt.id, 'balance', e.target.value)}
+                    data-row={index} data-col={1} onKeyDown={e => handleEnter(e, index, 1)}
                     className={moneyClass} placeholder="$0" />
                   <input value={debt.minPayment} onChange={e => updateDebt(debt.id, 'minPayment', e.target.value)}
+                    data-row={index} data-col={2} onKeyDown={e => handleEnter(e, index, 2)}
                     className={moneyClass} placeholder="$0" />
                   <input value={debt.interestRate} onChange={e => updateDebt(debt.id, 'interestRate', e.target.value)}
+                    data-row={index} data-col={3} onKeyDown={e => handleEnter(e, index, 3)}
                     className={moneyClass} placeholder="0%" />
-                  <button onClick={() => removeDebt(debt.id)} className="text-gray-300 hover:text-red-400 flex justify-center">
+                  <button onClick={() => removeDebt(debt.id)} tabIndex={-1} className="text-gray-300 hover:text-red-400 flex justify-center">
                     <Trash2 className="h-4 w-4" />
                   </button>
                 </div>
@@ -265,6 +285,21 @@ export default function DebtCalculator() {
               className="mt-3 text-sm text-brand-red hover:text-red-700 flex items-center gap-1 font-medium">
               <Plus className="h-4 w-4" /> Add Debt
             </button>
+
+            {/* Totals Row */}
+            <div className="grid grid-cols-[1fr_90px_90px_80px_32px] gap-1 items-end px-1 mt-3 pt-3 border-t border-gray-200">
+              <span />
+              <div className="text-center">
+                <div className="text-xs text-gray-500 mb-0.5">Total Debt Balance</div>
+                <div className="text-sm font-bold font-mono text-gray-900">{totalBalance > 0 ? fmt(totalBalance) : '—'}</div>
+              </div>
+              <div className="text-center">
+                <div className="text-xs text-gray-500 mb-0.5">Total Monthly Payment</div>
+                <div className="text-sm font-bold font-mono text-gray-900">{totalMin > 0 ? fmt(totalMin) : '—'}</div>
+              </div>
+              <span />
+              <span />
+            </div>
           </div>
 
           {/* Snowball Results */}
@@ -292,7 +327,7 @@ export default function DebtCalculator() {
                         <div className="font-bold text-brand-red">{months >= 999 ? '∞' : fmtMonths(months)}</div>
                       </div>
                       <div className="px-2">
-                        <div className="text-xs text-gray-500 mb-0.5">Est. Interest</div>
+                        <div className="text-xs text-gray-500 mb-0.5">Estimated Interest</div>
                         <div className="font-bold text-gray-700">{fmt(interest)}</div>
                       </div>
                     </div>
@@ -307,7 +342,7 @@ export default function DebtCalculator() {
                   <div className="font-bold text-gray-900">{fmt(totalBalance)}</div>
                 </div>
                 <div>
-                  <div className="text-xs text-gray-500 mb-1">Min. Payments</div>
+                  <div className="text-xs text-gray-500 mb-1">Minimum Payments</div>
                   <div className="font-bold text-gray-900">{fmt(totalMin)}</div>
                 </div>
                 <div>
@@ -315,6 +350,14 @@ export default function DebtCalculator() {
                   <div className="font-bold text-red-600">{fmt(totalInterest)}</div>
                 </div>
               </div>
+
+              {/* Debt-Free Timeline */}
+              {snowball[snowball.length - 1]?.months < 999 && (
+                <div className="mt-4 rounded-lg bg-red-50 border border-red-100 px-4 py-3 text-center">
+                  <div className="text-xs text-gray-500 mb-1 uppercase tracking-wide font-semibold">Debt-Free In</div>
+                  <div className="text-2xl font-bold text-brand-red">{fmtMonths(snowball[snowball.length - 1].months)}</div>
+                </div>
+              )}
             </div>
           )}
 

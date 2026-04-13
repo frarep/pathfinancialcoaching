@@ -1,7 +1,7 @@
 'use client'
 
 import { useState } from 'react'
-import { Download, ListChecks, Check } from 'lucide-react'
+import { Download, Check } from 'lucide-react'
 
 interface Step {
   number: number
@@ -150,7 +150,8 @@ const STATUS_OPTIONS = [
 
 export default function BabySteps() {
   const [name, setName] = useState('')
-  const [currentStep, setCurrentStep] = useState(1)
+  const [manualOverride, setManualOverride] = useState(false)
+  const [manualStep, setManualStep] = useState(1)
   const [stepData, setStepData] = useState<StepData>({})
 
   const getStepData = (n: number) =>
@@ -165,14 +166,14 @@ export default function BabySteps() {
   const completedCount = STEPS.filter(s => getStepData(s.number).status === 'complete').length
   const progressPct = Math.round((completedCount / 7) * 100)
 
+  const autoStep = STEPS.find(s => getStepData(s.number).status !== 'complete')?.number ?? 7
+  const currentStep = manualOverride ? manualStep : autoStep
+
   return (
     <div>
       {/* Hero */}
       <section className="section-container py-16">
         <div className="max-w-4xl mx-auto text-center">
-          <div className="flex justify-center mb-4">
-            <ListChecks className="h-14 w-14 text-brand-red" />
-          </div>
           <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-4 text-gray-900">
             BABY STEPS TRACKER
           </h1>
@@ -196,10 +197,25 @@ export default function BabySteps() {
               </div>
               <div>
                 <label className="block text-sm font-bold text-gray-700 mb-1">I am currently on Baby Step</label>
-                <select value={currentStep} onChange={e => setCurrentStep(Number(e.target.value))}
+                <select value={currentStep}
+                  onChange={e => { setManualStep(Number(e.target.value)); setManualOverride(true) }}
                   className="w-full px-3 py-2 rounded-lg border border-gray-300 bg-white focus:ring-2 focus:ring-soft-blue focus:border-transparent">
                   {STEPS.map(s => <option key={s.number} value={s.number}>Baby Step {s.number}</option>)}
                 </select>
+                <div className="mt-1.5 flex items-center gap-1.5 text-xs">
+                  {manualOverride ? (
+                    <>
+                      <span className="text-amber-600 font-medium">Manual override</span>
+                      <span className="text-gray-400">·</span>
+                      <button onClick={() => setManualOverride(false)}
+                        className="text-brand-red hover:underline font-medium">
+                        Reset to auto
+                      </button>
+                    </>
+                  ) : (
+                    <span className="text-green-600 font-medium">Auto-calculated from completed steps</span>
+                  )}
+                </div>
               </div>
             </div>
 

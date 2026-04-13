@@ -1,7 +1,7 @@
 'use client'
 
 import { useState } from 'react'
-import { Plus, Trash2, Download, Target, ChevronDown, ChevronUp } from 'lucide-react'
+import { Plus, Trash2, Download, ChevronDown, ChevronUp } from 'lucide-react'
 
 interface Goal {
   id: number
@@ -73,23 +73,23 @@ function generatePDF(goals: Goal[], name: string, date: string) {
 <head>
   <title>Financial Goal-Setting Worksheet — Path Financial Coaching</title>
   <style>
-    body { font-family: Arial, sans-serif; max-width: 760px; margin: 0 auto; padding: 24px; color: #1F2937; }
+    @page { margin: 0.6in; }
+    html, body { font-family: Arial, sans-serif; margin: 0; padding: 0; color: #1F2937; }
     .header { text-align: center; border-bottom: 3px solid #DC2626; padding-bottom: 16px; margin-bottom: 24px; }
     .header h1 { color: #DC2626; font-size: 26px; margin: 0 0 4px 0; }
     .header .subtitle { color: #6B7280; font-size: 13px; }
     .meta { display: flex; justify-content: space-between; margin-bottom: 28px; padding: 10px 14px; background: #F9FAFB; border-radius: 8px; font-size: 14px; }
-    .goal-section { margin-bottom: 36px; page-break-inside: avoid; }
-    .goal-section h2 { background: #DC2626; color: white; padding: 10px 14px; border-radius: 6px; margin-bottom: 14px; font-size: 17px; }
-    .smart-item { margin-bottom: 10px; padding: 10px 12px; border-left: 4px solid #DC2626; background: #FEF2F2; border-radius: 0 6px 6px 0; }
+    .goal-section { margin-bottom: 24px; }
+    .goal-section h2 { background: #DC2626; color: white; padding: 10px 14px; border-radius: 6px; margin-bottom: 14px; font-size: 17px; page-break-after: avoid; break-after: avoid; }
+    .smart-item { margin-bottom: 10px; padding: 10px 12px; border-left: 4px solid #DC2626; background: #FEF2F2; border-radius: 0 6px 6px 0; page-break-inside: avoid; break-inside: avoid; }
     .smart-label { font-weight: bold; color: #DC2626; font-size: 13px; }
     .smart-question { color: #6B7280; font-size: 11px; margin: 2px 0 5px 0; font-style: italic; }
-    .answer { color: #1F2937; font-size: 13px; line-height: 1.5; min-height: 18px; white-space: pre-wrap; }
+    .answer { color: #1F2937; font-size: 13px; line-height: 1.5; white-space: pre-wrap; }
     .subsection { margin-top: 16px; }
     .subsection h3 { color: #374151; font-size: 15px; border-bottom: 2px solid #E5E7EB; padding-bottom: 4px; margin-bottom: 8px; }
-    .action-item { margin-bottom: 8px; padding: 9px 12px; background: #F9FAFB; border-radius: 6px; }
+    .action-item { margin-bottom: 8px; padding: 9px 12px; background: #F9FAFB; border-radius: 6px; page-break-inside: avoid; break-inside: avoid; }
     .action-label { font-weight: bold; font-size: 12px; color: #374151; margin-bottom: 3px; }
-    .footer { text-align: center; margin-top: 36px; padding-top: 16px; border-top: 1px solid #E5E7EB; color: #9CA3AF; font-size: 11px; }
-    @media print { body { padding: 8px; } }
+    .footer { text-align: center; margin-top: 24px; padding-top: 16px; border-top: 1px solid #E5E7EB; color: #9CA3AF; font-size: 11px; }
   </style>
 </head>
 <body>
@@ -113,8 +113,10 @@ function generatePDF(goals: Goal[], name: string, date: string) {
   if (printWindow) {
     printWindow.document.write(html)
     printWindow.document.close()
-    printWindow.focus()
-    setTimeout(() => printWindow.print(), 400)
+    printWindow.onload = () => {
+      printWindow.focus()
+      printWindow.print()
+    }
   }
 }
 
@@ -161,9 +163,6 @@ export default function GoalSettingForm() {
       {/* Hero */}
       <section className="section-container py-16">
         <div className="max-w-4xl mx-auto text-center">
-          <div className="flex justify-center mb-4">
-            <Target className="h-14 w-14 text-brand-red" />
-          </div>
           <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-4 text-gray-900">
             GOAL-SETTING WORKSHEET
           </h1>

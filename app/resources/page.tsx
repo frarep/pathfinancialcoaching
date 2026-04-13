@@ -1,4 +1,4 @@
-import { ExternalLink, BookOpen, TrendingUp, PiggyBank, FileText, Lightbulb, BarChart3 } from 'lucide-react'
+import { ExternalLink, BookOpen, PiggyBank, FileText, Lightbulb, BarChart3 } from 'lucide-react'
 import { Metadata } from 'next'
 import { createMetadata } from '../metadata'
 
@@ -12,18 +12,6 @@ export const metadata: Metadata = createMetadata({
 export default function Resources() {
   // Resources Section: Calculators, Forms, Apps
   const resources = [
-    {
-      icon: <img src="/images/flat-blue-50-ramsey-logo.svg" alt="Ramsey Solutions" width="120" height="48" className="h-10 sm:h-12 w-auto" loading="eager" />,
-      title: "Budget Calculator",
-      description: "The budget calculator helps you see where you stand with your money right now.",
-      link: "https://www.ramseysolutions.com/budgeting/budget-calculator"
-    },
-    {
-      icon: <TrendingUp className="h-12 w-12 text-soft-blue" />,
-      title: "Debt Payoff Calculator",
-      description: "Calculate how quickly you can become debt-free with the debt snowball method.",
-      link: "#"
-    },
     {
       icon: <img src="/images/Social Security Logo.svg" alt="Social Security Administration" width="120" height="48" className="h-10 sm:h-12 w-auto" loading="eager" />,
       title: "Social Security Calculator",

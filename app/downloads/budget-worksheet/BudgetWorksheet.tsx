@@ -1,7 +1,7 @@
 'use client'
 
 import { useState } from 'react'
-import { Plus, Trash2, Download, DollarSign, Pencil, Check, X } from 'lucide-react'
+import { Plus, Trash2, Download, Pencil, Check, X } from 'lucide-react'
 
 // ─── Types ─────────────────────────────────────────────────────────────────
 
@@ -150,7 +150,8 @@ function generatePDF(
 <head>
   <title>Monthly Budget Worksheet — Path Financial Coaching</title>
   <style>
-    body { font-family: Arial, sans-serif; max-width: 800px; margin: 0 auto; padding: 20px; color: #1F2937; font-size: 13px; }
+    @page { margin: 0.6in; }
+    html, body { font-family: Arial, sans-serif; margin: 0; padding: 0; color: #1F2937; font-size: 13px; print-color-adjust: exact; -webkit-print-color-adjust: exact; }
     .header { text-align: center; border-bottom: 3px solid #DC2626; padding-bottom: 14px; margin-bottom: 20px; }
     .header h1 { color: #DC2626; font-size: 24px; margin: 0 0 3px 0; }
     .header .sub { color: #6B7280; font-size: 12px; }
@@ -338,9 +339,6 @@ export default function BudgetWorksheet() {
       {/* Hero */}
       <section className="section-container py-16">
         <div className="max-w-4xl mx-auto text-center">
-          <div className="flex justify-center mb-4">
-            <DollarSign className="h-14 w-14 text-brand-red" />
-          </div>
           <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-4 text-gray-900">
             MONTHLY BUDGET WORKSHEET
           </h1>
