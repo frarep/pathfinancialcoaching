@@ -44,25 +44,25 @@ export default function Resources() {
       icon: <BookOpen className="h-12 w-12 text-soft-green" />,
       title: "Financial Education Articles",
       description: "Access articles, videos, and courses on personal finance fundamentals.",
-      link: "#"
+      link: "/coming-soon"
     },
     {
       icon: <PiggyBank className="h-12 w-12 text-soft-green" />,
       title: "Emergency Fund Guide",
       description: "Learn how to build and maintain a fully-funded emergency fund.",
-      link: "#"
+      link: "/coming-soon"
     },
     {
       icon: <Lightbulb className="h-12 w-12 text-soft-green" />,
       title: "Money Tips & Insights",
       description: "Regular tips and strategies for improving your financial situation.",
-      link: "#"
+      link: "/coming-soon"
     },
     {
       icon: <BarChart3 className="h-12 w-12 text-soft-green" />,
       title: "Financial Planning Resources",
       description: "Comprehensive guides for long-term financial planning and wealth building.",
-      link: "#"
+      link: "/coming-soon"
     }
   ]
 
@@ -122,37 +122,58 @@ export default function Resources() {
 
       {/* Resources Section */}
       <section className="section-container">
-        <h2 className="section-title">Resources</h2>
+        <h2 className="section-title">Tools</h2>
         <p className="section-subtitle">
           Financial tools and calculators to help you take control
         </p>
-        <div className="flex flex-wrap justify-center gap-6">
-          {resources.map((resource, index) => (
+        <div className="flex flex-col gap-6">
+          {/* Top row: Financial Forms centered */}
+          <div className="flex justify-center">
             <a
-              key={index}
-              href={resource.link}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="card group hover:bg-gradient-to-br hover:from-soft-blue-light hover:to-white transition-all duration-300 w-full sm:w-[calc(50%-0.75rem)] lg:w-[calc(33.333%-1rem)] max-w-sm flex flex-col"
+              href="/downloads"
+              className="card group hover:bg-gradient-to-br hover:from-soft-blue-light hover:to-white transition-shadow duration-300 w-full sm:w-[calc(50%-0.75rem)] lg:w-[calc(33.333%-1rem)] max-w-sm flex flex-col"
             >
               <div className="flex flex-col items-center text-center flex-grow">
                 <div className="mb-4 transform group-hover:scale-110 transition-transform duration-300">
-                  {resource.icon}
+                  <FileText className="h-12 w-12 text-soft-blue" />
                 </div>
-                <h3 className="text-xl font-bold mb-3 text-gray-900">{resource.title}</h3>
-                <p className="text-gray-700 mb-4 flex-grow">{resource.description}</p>
+                <h3 className="text-xl font-bold mb-3 text-gray-900">Financial Forms</h3>
+                <p className="text-gray-700 mb-4 flex-grow">Download templates for budgeting, debt tracking, and goal setting.</p>
               </div>
               <div className="flex items-center justify-center gap-2 text-brand-red font-medium mt-auto">
                 Learn More
-                <ExternalLink className="h-4 w-4" />
               </div>
             </a>
-          ))}
+          </div>
+          {/* Bottom row: other three resources */}
+          <div className="flex flex-wrap justify-center gap-6">
+            {resources.filter(r => r.link !== '/downloads').map((resource, index) => (
+              <a
+                key={index}
+                href={resource.link}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="card group hover:bg-gradient-to-br hover:from-soft-blue-light hover:to-white transition-shadow duration-300 w-full sm:w-[calc(50%-0.75rem)] lg:w-[calc(33.333%-1rem)] max-w-sm flex flex-col"
+              >
+                <div className="flex flex-col items-center text-center flex-grow">
+                  <div className="mb-4 transform group-hover:scale-110 transition-transform duration-300">
+                    {resource.icon}
+                  </div>
+                  <h3 className="text-xl font-bold mb-3 text-gray-900">{resource.title}</h3>
+                  <p className="text-gray-700 mb-4 flex-grow">{resource.description}</p>
+                </div>
+                <div className="flex items-center justify-center gap-2 text-brand-red font-medium mt-auto">
+                  Learn More
+                  <ExternalLink className="h-4 w-4" />
+                </div>
+              </a>
+            ))}
+          </div>
         </div>
       </section>
 
       {/* Additional Information Section */}
-      <section className="section-container">
+      <section id="additional-information" className="section-container">
         <h2 className="section-title">Additional Information</h2>
         <p className="section-subtitle">
           Educational content to expand your financial knowledge
@@ -162,9 +183,7 @@ export default function Resources() {
             <a
               key={index}
               href={info.link}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="card group hover:bg-gradient-to-br hover:from-green-50 hover:to-white transition-all duration-300 w-full sm:w-[calc(50%-0.75rem)] lg:w-[calc(50%-0.75rem)] max-w-sm flex flex-col"
+              className="card group hover:bg-gradient-to-br hover:from-soft-blue-light hover:to-white transition-shadow duration-300 w-full sm:w-[calc(50%-0.75rem)] lg:w-[calc(50%-0.75rem)] max-w-sm flex flex-col"
             >
               <div className="flex flex-col items-center text-center flex-grow">
                 <div className="mb-4 transform group-hover:scale-110 transition-transform duration-300">
@@ -175,7 +194,6 @@ export default function Resources() {
               </div>
               <div className="flex items-center justify-center gap-2 text-brand-red font-medium mt-auto">
                 Read More
-                <ExternalLink className="h-4 w-4" />
               </div>
             </a>
           ))}
@@ -195,7 +213,7 @@ export default function Resources() {
               href={partner.link}
               target="_blank"
               rel="noopener noreferrer"
-              className="card group hover:bg-gradient-to-br hover:from-soft-yellow-light hover:to-white transition-all duration-300 w-full sm:w-[calc(50%-0.75rem)] lg:w-[calc(33.333%-1rem)] max-w-sm flex flex-col"
+              className="card group hover:bg-gradient-to-br hover:from-soft-yellow-light hover:to-white transition-shadow duration-300 w-full sm:w-[calc(50%-0.75rem)] lg:w-[calc(33.333%-1rem)] max-w-sm flex flex-col"
             >
               <div className="flex flex-col items-center text-center flex-grow">
                 <p className="text-base font-semibold text-brand-red mb-2">{partner.serviceType}</p>

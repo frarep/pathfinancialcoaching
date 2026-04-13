@@ -128,7 +128,7 @@ export default function About() {
       </section>
 
       {/* Final CTA Section */}
-      <section className="section-container bg-gradient-to-r from-soft-blue-light to-soft-yellow-light">
+      <section className="section-container">
         <div className="text-center max-w-4xl mx-auto">
           <h2 className="text-3xl md:text-5xl font-bold mb-6 text-gray-900 leading-tight">
             Are You Tired Of Being Scared?<br className="mb-2" /> Are You Ready To Take Control?

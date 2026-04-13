@@ -36,20 +36,20 @@ Reviewed and refined all 4 interactive financial worksheets, then cleaned up the
 
 ---
 
-## Possible Next Steps
-
-1. **Add worksheets to the Resources page** — link to /downloads from the resources tools section
-2. **Navigation update** — add "Worksheets" or "Tools" link in the header nav
-3. **About page photo** — add a professional photo of Coach Patrick
-4. **Testimonials section** — add client success stories to homepage
-5. **Blog / articles** — financial education content for SEO
-
----
-
 ## Current Project Status
 - ✅ All 4 worksheets functional and polished
 - ✅ PDF export working correctly on all worksheets
-- ✅ Resources page cleaned up
+- ✅ Resources page cleaned up and reorganized
+- ✅ Financial Forms card links to /downloads
+- ✅ About page photo added
+- ✅ Consultation form submits to email + Airtable
 - ✅ Pushed to GitHub
 
-**Last updated:** April 12, 2026
+---
+
+## Post-Launch Upgrades (Do Not Block Launch)
+
+1. **Testimonials section** — add client success stories to homepage; pull dynamically from an external database and cycle through them
+2. **Blog / articles** — financial education content for SEO
+
+**Last updated:** April 13, 2026

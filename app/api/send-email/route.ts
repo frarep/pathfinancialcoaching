@@ -1,6 +1,46 @@
 import { NextResponse } from 'next/server'
 import nodemailer from 'nodemailer'
 
+async function submitToAirtable(data: {
+  firstName: string
+  lastName: string
+  email: string
+  phone: string
+  goals: string
+}) {
+  const { AIRTABLE_TOKEN, AIRTABLE_BASE_ID, AIRTABLE_TABLE_NAME } = process.env
+
+  if (!AIRTABLE_TOKEN || !AIRTABLE_BASE_ID || !AIRTABLE_TABLE_NAME) {
+    console.warn('Airtable env vars not set — skipping Airtable submission')
+    return
+  }
+
+  const response = await fetch(
+    `https://api.airtable.com/v0/${AIRTABLE_BASE_ID}/${encodeURIComponent(AIRTABLE_TABLE_NAME)}`,
+    {
+      method: 'POST',
+      headers: {
+        Authorization: `Bearer ${AIRTABLE_TOKEN}`,
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        fields: {
+          'First Name': data.firstName,
+          'Last Name': data.lastName,
+          'Email': data.email,
+          'Phone': data.phone,
+          'Goals': data.goals,
+        },
+      }),
+    }
+  )
+
+  if (!response.ok) {
+    const error = await response.text()
+    console.error('Airtable submission failed:', error)
+  }
+}
+
 export async function POST(request: Request) {
   try {
     const body = await request.json()
@@ -142,8 +182,11 @@ Submitted on: ${new Date().toLocaleString()}
       `,
     }
 
-    // Send email
-    await transporter.sendMail(mailOptions)
+    // Send email and submit to Airtable in parallel
+    await Promise.all([
+      transporter.sendMail(mailOptions),
+      submitToAirtable({ firstName, lastName, email, phone, goals }),
+    ])
 
     return NextResponse.json(
       { message: 'Email sent successfully' },
