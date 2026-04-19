@@ -17,13 +17,30 @@ export default function Header() {
 
   return (
     <header className="sticky top-0 z-50 bg-gradient-to-r from-soft-blue-light via-white to-soft-yellow-light shadow-lg">
-      <nav className="max-w-full mx-auto px-4 sm:px-6 lg:px-8">
+      <nav className="max-w-full mx-auto pl-3 pr-4 sm:pr-6 lg:pr-8">
         <div className="flex items-center justify-between h-20">
           {/* Logo/Brand - Far Left */}
-          <Link href="/" className="flex-shrink-0 mr-4 sm:mr-8">
-            <h1 className="text-sm sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl font-bold bg-gradient-to-r from-blue-700 to-orange-500 bg-clip-text text-transparent hover:opacity-80 transition-opacity">
+          <Link href="/" className="flex-shrink-0 mr-4 sm:mr-8 flex items-center gap-4 hover:opacity-80 transition-opacity">
+            <div
+              aria-label="Path Financial Coaching logo"
+              className="h-[53px] sm:h-[62px] w-[107px] sm:w-[125px] flex-shrink-0 self-center"
+              style={{
+                backgroundImage: 'linear-gradient(to right, #1d4ed8, #f97316)',
+                backgroundSize: '100% 100%',
+                backgroundRepeat: 'no-repeat',
+                WebkitMaskImage: 'url(/images/Adjusted%20Website%20Logo.png)',
+                maskImage: 'url(/images/Adjusted%20Website%20Logo.png)',
+                WebkitMaskRepeat: 'no-repeat',
+                maskRepeat: 'no-repeat',
+                WebkitMaskSize: 'contain',
+                maskSize: 'contain',
+                WebkitMaskPosition: 'left center',
+                maskPosition: 'left center',
+              }}
+            />
+            <span className="text-sm sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl font-bold bg-gradient-to-r from-blue-700 to-orange-500 bg-clip-text text-transparent whitespace-nowrap">
               PATH FINANCIAL COACHING
-            </h1>
+            </span>
           </Link>
 
           {/* Desktop Navigation - Single Line */}
