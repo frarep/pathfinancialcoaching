@@ -31,6 +31,24 @@ export default function Home() {
         </div>
       </section>
 
+      {/* Why Are Your Dreams Unfulfilled Section */}
+      <section className="section-container">
+        <div className="max-w-4xl mx-auto">
+          <h2 className="section-title">WHY ARE YOUR DREAMS UNFULFILLED?</h2>
+          <div className="space-y-6 text-lg text-gray-900 leading-relaxed">
+            <p className="drop-shadow-sm">
+              Are you part of the over 50% of people that believe that it is impossible to achieve your financial goals? Increasing debt, higher expenses, more and more taxes, financial uncertainty, all of which are dragging you down and keeping you from your dreams, your true passions.
+            </p>
+            <p className="drop-shadow-sm">
+              Have you been beat down by your financial situation for so long you can&apos;t even remember your dream goals? I have too. Increasing anxiety, frustration, money fights, sleepless nights worrying about where the money is going to come from to pay the next bill sitting on the counter unopened. You only need to look inside of yourself for the answer.
+            </p>
+            <p className="drop-shadow-sm">
+              You have the passion inside of you to make changes and achieve the dreams you want. I can help you find that passion again. As your Financial Coach, I will walk with you in this process to teach you the financial skills and knowledge that we were never taught in school. To give you the power to take control of your finances, to break free from debt, and to <strong>make your dreams a reality</strong>.
+            </p>
+          </div>
+        </div>
+      </section>
+
       {/* What Is A Financial Coach Section */}
       <section className="section-container">
         <div className="max-w-4xl mx-auto">
@@ -90,16 +108,16 @@ export default function Home() {
 
           <div className="grid md:grid-cols-2 gap-12 items-center">
             {/* Left Column - Content */}
-            <div className="space-y-6 max-w-lg">
+            <div className="space-y-6 max-w-lg text-center">
               <div className="space-y-4 text-lg text-gray-900 leading-relaxed">
                 <p className="font-semibold text-xl text-gray-900 drop-shadow-sm">
-                  Do your dreams feel out of reach? I believe they're not.
+                  Do your dreams feel out of reach?
                 </p>
                 <p className="drop-shadow-sm">
-                  Dreams are what move us forward—and with the right plan, they can become reality.
+                  Dreams are what give us motivation to keep moving forward. They are the passion inside of you. Sometimes we lose view of those dreams and that drive forward starts slowing down or backsliding. But there is help available to bring your dreams to life!
                 </p>
                 <p className="drop-shadow-sm">
-                  Let's talk about your goals and how we can make them happen.
+                  Let&apos;s talk about your dreams, what drives you and how, together, we can make them come true.
                 </p>
               </div>
 
