@@ -50,7 +50,7 @@ export default function Resources() {
       icon: <PiggyBank className="h-12 w-12 text-soft-green" />,
       title: "Emergency Fund Guide",
       description: "Learn how to build and maintain a fully-funded emergency fund.",
-      link: "/coming-soon"
+      link: "/resources/emergency-fund"
     },
     {
       icon: <Lightbulb className="h-12 w-12 text-soft-green" />,
