@@ -91,13 +91,13 @@ export default function Resources() {
       description: "Trusted real estate professional with extensive market expertise. Dedicated to making your home buying and selling process smooth and stress-free.",
       link: "https://www.anneshamontez.realtor/"
     },
-    {
-      icon: <img src="/images/Tara jo.webp" alt="Tara Jo Hayes" width="128" height="128" className="h-24 w-24 sm:h-28 sm:w-28 md:h-32 md:w-32 object-cover rounded-full" style={{objectPosition: '50% 15%', filter: 'brightness(1.15)'}} loading="eager" />,
-      businessName: "Tara Jo Hayes",
-      serviceType: "Real Estate",
-      description: "Born and raised locally with deep knowledge of the area. Determined, attentive, and always available for your call. High standards and strong focus on great results.",
-      link: "https://www.windermere.com/directory/agents/tara-jo-hayes"
-    },
+    // {
+    //   icon: <img src="/images/Tara jo.webp" alt="Tara Jo Hayes" width="128" height="128" className="h-24 w-24 sm:h-28 sm:w-28 md:h-32 md:w-32 object-cover rounded-full" style={{objectPosition: '50% 15%', filter: 'brightness(1.15)'}} loading="eager" />,
+    //   businessName: "Tara Jo Hayes",
+    //   serviceType: "Real Estate",
+    //   description: "Born and raised locally with deep knowledge of the area. Determined, attentive, and always available for your call. High standards and strong focus on great results.",
+    //   link: "https://www.windermere.com/directory/agents/tara-jo-hayes"
+    // },
     // Counselors
     {
       icon: <img src="/images/Tabitha2 adjusted.webp" alt="Tabitha Ramos" width="128" height="128" className="h-24 w-24 sm:h-28 sm:w-28 md:h-32 md:w-32 object-cover rounded-full" style={{objectPosition: '50% 15%', filter: 'brightness(1.15)'}} loading="eager" />,
