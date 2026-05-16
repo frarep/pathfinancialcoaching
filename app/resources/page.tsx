@@ -71,7 +71,8 @@ export default function Resources() {
     // Financial Advisors
     {
       icon: <img src="/images/SmartVestor-Logo-Ramsey-Color-5-21-1117436319.png" alt="SmartVestor" width="120" height="48" className="h-10 sm:h-12 w-auto mt-4 sm:mt-8 mb-8 sm:mb-12" loading="eager" />,
-      businessName: "\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0",
+      businessName: "SmartVestor Pro",
+      contactName: "SmartVestor Pro",
       serviceType: "Financial Advisors",
       description: "Ramsey-trusted investment professionals who can help you plan for your financial future.",
       link: "https://www.ramseysolutions.com/retirement/smartvestor"
@@ -79,6 +80,7 @@ export default function Resources() {
     {
       icon: <img src="/images/derek-a-gilbert_0171d_400x490.webp" alt="Derek Gilbert" width="128" height="128" className="h-24 w-24 sm:h-28 sm:w-28 md:h-32 md:w-32 object-cover rounded-full" style={{objectPosition: '45% 0%', filter: 'brightness(1.15)'}} loading="eager" />,
       businessName: "Derek Gilbert",
+      contactName: "Derek",
       serviceType: "Financial Advisor",
       description: "Experienced financial advisor providing personalized investment and retirement planning.",
       link: "https://www.ameripriseadvisors.com/Derek.Gilbert/"
@@ -87,6 +89,7 @@ export default function Resources() {
     {
       icon: <img src="/images/Annesha.webp" alt="Annesha Montez" width="128" height="128" className="h-24 w-24 sm:h-28 sm:w-28 md:h-32 md:w-32 object-cover rounded-full" style={{objectPosition: '50% 0%', filter: 'brightness(1.15)'}} loading="eager" />,
       businessName: "Annesha Montez",
+      contactName: "Annesha",
       serviceType: "Real Estate",
       description: "Trusted real estate professional with extensive market expertise. Dedicated to making your home buying and selling process smooth and stress-free.",
       link: "https://www.anneshamontez.realtor/"
@@ -94,6 +97,7 @@ export default function Resources() {
     // {
     //   icon: <img src="/images/Tara jo.webp" alt="Tara Jo Hayes" width="128" height="128" className="h-24 w-24 sm:h-28 sm:w-28 md:h-32 md:w-32 object-cover rounded-full" style={{objectPosition: '50% 15%', filter: 'brightness(1.15)'}} loading="eager" />,
     //   businessName: "Tara Jo Hayes",
+    //   contactName: "Tara Jo",
     //   serviceType: "Real Estate",
     //   description: "Born and raised locally with deep knowledge of the area. Determined, attentive, and always available for your call. High standards and strong focus on great results.",
     //   link: "https://www.windermere.com/directory/agents/tara-jo-hayes"
@@ -102,9 +106,18 @@ export default function Resources() {
     {
       icon: <img src="/images/Tabitha2 adjusted.webp" alt="Tabitha Ramos" width="128" height="128" className="h-24 w-24 sm:h-28 sm:w-28 md:h-32 md:w-32 object-cover rounded-full" style={{objectPosition: '50% 15%', filter: 'brightness(1.15)'}} loading="eager" />,
       businessName: "Tabitha Ramos, LCSW",
+      contactName: "Tabitha",
       serviceType: "Counseling Services",
       description: "Passionate about helping women and couples overcome relationship challenges and grow their own way. Specializing in trauma treatment including EMDR therapy.",
       link: "https://growyourownwaytherapy.com/"
+    },
+    {
+      icon: <div className="h-24 w-24 sm:h-28 sm:w-28 md:h-32 md:w-32 rounded-full overflow-hidden flex-shrink-0"><img src="/images/Bethany Bravery.png" alt="Dr. Bethany Bravery" width="128" height="128" className="h-full w-full object-cover" style={{objectPosition: '50% 0%', transform: 'scale(1.3)', transformOrigin: '50% 0%'}} loading="eager" /></div>,
+      businessName: "Dr. Bethany Bravery",
+      contactName: "Bethany",
+      serviceType: "Christian Pastoral Counselor",
+      description: "Christ-Centered Counseling for Life's Challenges for those feeling stuck, exhausted, or at the end of their rope. I walk alongside women, couples, and families through Christ-centered counseling, providing tailored homework that helps cultivate their walk with God and leads to deeper healing and lasting growth.",
+      link: "https://bethanybravery.com/counseling/"
     }
   ]
 
@@ -224,7 +237,7 @@ export default function Resources() {
                 <p className="text-gray-700 mb-4 flex-grow">{partner.description}</p>
               </div>
               <div className="flex items-center justify-center gap-2 text-brand-red font-medium mt-auto">
-                Contact Partner
+                Contact {partner.contactName}
                 <ExternalLink className="h-4 w-4" />
               </div>
             </a>
