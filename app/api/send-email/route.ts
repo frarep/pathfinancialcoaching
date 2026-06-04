@@ -25,11 +25,12 @@ async function submitToAirtable(data: {
       },
       body: JSON.stringify({
         fields: {
-          'First Name': data.firstName,
-          'Last Name': data.lastName,
+          'Name': `${data.firstName} ${data.lastName}`,
           'Email': data.email,
-          'Phone': data.phone,
-          'Goals': data.goals,
+          'Cell Phone': data.phone,
+          'Notes': data.goals,
+          'Source': 'Website Consultation Form',
+          'Status': 'Inquiry Received',
         },
       }),
     }
