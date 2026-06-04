@@ -153,7 +153,7 @@ export default function FreeConsultation() {
 
         // Redirect to Calendly after 3 seconds
         setTimeout(() => {
-          const calendlyUrl = process.env.NEXT_PUBLIC_CALENDLY_URL || 'https://calendly.com/path-financial-coaching'
+          const calendlyUrl = process.env.NEXT_PUBLIC_CALENDLY_URL || 'https://calendly.com/frare-patrick/30min'
           window.location.href = calendlyUrl
         }, 3000)
       } else {
