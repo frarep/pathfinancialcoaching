@@ -1,44 +1,59 @@
 import { NextResponse } from 'next/server'
 import nodemailer from 'nodemailer'
 
+type AirtableResult = { ok: true } | { ok: false; error: string }
+
 async function submitToAirtable(data: {
   firstName: string
   lastName: string
   email: string
   phone: string
   goals: string
-}) {
+}): Promise<AirtableResult> {
   const { AIRTABLE_TOKEN, AIRTABLE_BASE_ID, AIRTABLE_TABLE_NAME } = process.env
 
   if (!AIRTABLE_TOKEN || !AIRTABLE_BASE_ID || !AIRTABLE_TABLE_NAME) {
-    console.warn('Airtable env vars not set — skipping Airtable submission')
-    return
+    const error = 'Airtable env vars not set (AIRTABLE_TOKEN / AIRTABLE_BASE_ID / AIRTABLE_TABLE_NAME)'
+    console.warn(`${error} — skipping Airtable submission`)
+    return { ok: false, error }
   }
 
-  const response = await fetch(
-    `https://api.airtable.com/v0/${AIRTABLE_BASE_ID}/${encodeURIComponent(AIRTABLE_TABLE_NAME)}`,
-    {
-      method: 'POST',
-      headers: {
-        Authorization: `Bearer ${AIRTABLE_TOKEN}`,
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        fields: {
-          'Name': `${data.firstName} ${data.lastName}`,
-          'Email': data.email,
-          'Cell Phone': data.phone,
-          'Notes': data.goals,
-          'Source': 'Website Consultation Form',
-          'Status': 'Inquiry Received',
+  try {
+    const response = await fetch(
+      `https://api.airtable.com/v0/${AIRTABLE_BASE_ID}/${encodeURIComponent(AIRTABLE_TABLE_NAME)}`,
+      {
+        method: 'POST',
+        headers: {
+          Authorization: `Bearer ${AIRTABLE_TOKEN}`,
+          'Content-Type': 'application/json',
         },
-      }),
-    }
-  )
+        body: JSON.stringify({
+          // typecast lets Airtable match/create single-select options (e.g. Status)
+          // instead of rejecting the whole record when the exact option is missing.
+          typecast: true,
+          fields: {
+            'Name': `${data.firstName} ${data.lastName}`,
+            'Email': data.email,
+            'Cell Phone': data.phone,
+            'Notes': data.goals,
+            'Source': 'Website Consultation Form',
+            'Status': 'Inquiry Received',
+          },
+        }),
+      }
+    )
 
-  if (!response.ok) {
-    const error = await response.text()
-    console.error('Airtable submission failed:', error)
+    if (!response.ok) {
+      const error = await response.text()
+      console.error('Airtable submission failed:', error)
+      return { ok: false, error }
+    }
+
+    return { ok: true }
+  } catch (err) {
+    const error = err instanceof Error ? err.message : String(err)
+    console.error('Airtable submission threw:', error)
+    return { ok: false, error }
   }
 }
 
@@ -54,6 +69,19 @@ export async function POST(request: Request) {
         { status: 400 }
       )
     }
+
+    // Submit to Airtable first so the notification email can report CRM status.
+    // The lead is never lost: if the CRM write fails, the email below flags it
+    // loudly so it can be added manually.
+    const airtableResult = await submitToAirtable({ firstName, lastName, email, phone, goals })
+
+    const crmBannerHtml = airtableResult.ok
+      ? `<div style="padding:12px 20px;background:#ECFDF5;color:#065F46;border-radius:8px;margin-bottom:20px;">✅ Saved to the CRM (Contacts table).</div>`
+      : `<div style="padding:12px 20px;background:#FEF2F2;color:#991B1B;border:1px solid #FCA5A5;border-radius:8px;margin-bottom:20px;">⚠️ <strong>NOT saved to the CRM — add this lead manually.</strong><br/>Airtable error: ${airtableResult.error}</div>`
+
+    const crmBannerText = airtableResult.ok
+      ? 'CRM: Saved to Contacts table.\n\n'
+      : `CRM: *** NOT SAVED — ADD MANUALLY *** (Airtable error: ${airtableResult.error})\n\n`
 
     // Create transporter with environment variables
     // This supports multiple email providers (Gmail, SendGrid, etc.)
@@ -136,6 +164,7 @@ export async function POST(request: Request) {
                 <h1>New Consultation Request</h1>
               </div>
               <div class="content">
+                ${crmBannerHtml}
                 <div class="field">
                   <span class="label">First Name:</span>
                   <div class="value">${firstName}</div>
@@ -171,7 +200,7 @@ export async function POST(request: Request) {
       text: `
 New Coaching Consultation Request
 
-First Name: ${firstName}
+${crmBannerText}First Name: ${firstName}
 Last Name: ${lastName}
 Email: ${email}
 Phone Number: ${phone}
@@ -183,11 +212,8 @@ Submitted on: ${new Date().toLocaleString()}
       `,
     }
 
-    // Send email and submit to Airtable in parallel
-    await Promise.all([
-      transporter.sendMail(mailOptions),
-      submitToAirtable({ firstName, lastName, email, phone, goals }),
-    ])
+    // Airtable was already submitted above; just send the notification email.
+    await transporter.sendMail(mailOptions)
 
     return NextResponse.json(
       { message: 'Email sent successfully' },
