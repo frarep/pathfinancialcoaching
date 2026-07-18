@@ -1,9 +1,20 @@
 import { NextResponse } from 'next/server'
 import nodemailer from 'nodemailer'
 
-type AirtableResult = { ok: true } | { ok: false; error: string }
+type AirtableResult =
+  | { ok: true; action: 'created' | 'updated'; touchCount: number }
+  | { ok: false; error: string }
 
-async function submitToAirtable(data: {
+// Today's date as YYYY-MM-DD in Pacific time (business timezone), so the
+// Last Touch Date doesn't roll to "tomorrow" for evening submissions on a
+// UTC server.
+function pacificDate(): string {
+  return new Intl.DateTimeFormat('en-CA', {
+    timeZone: 'America/Los_Angeles',
+  }).format(new Date())
+}
+
+async function upsertToAirtable(data: {
   firstName: string
   lastName: string
   email: string
@@ -18,39 +29,94 @@ async function submitToAirtable(data: {
     return { ok: false, error }
   }
 
-  try {
-    const response = await fetch(
-      `https://api.airtable.com/v0/${AIRTABLE_BASE_ID}/${encodeURIComponent(AIRTABLE_TABLE_NAME)}`,
-      {
-        method: 'POST',
-        headers: {
-          Authorization: `Bearer ${AIRTABLE_TOKEN}`,
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          // typecast lets Airtable match/create single-select options (e.g. Status)
-          // instead of rejecting the whole record when the exact option is missing.
-          typecast: true,
-          fields: {
-            'Name': `${data.firstName} ${data.lastName}`,
-            'Email': data.email,
-            'Cell Phone': data.phone,
-            'Notes': data.goals,
-            'Source': 'Website Consultation Form',
-            'Status': 'Inquiry Received',
-            'Outreach Track': 'End Client',
-          },
-        }),
-      }
-    )
+  const baseUrl = `https://api.airtable.com/v0/${AIRTABLE_BASE_ID}/${encodeURIComponent(AIRTABLE_TABLE_NAME)}`
+  const authHeaders = {
+    Authorization: `Bearer ${AIRTABLE_TOKEN}`,
+    'Content-Type': 'application/json',
+  }
+  const today = pacificDate()
+  const datedGoals = `[${today}] New consultation request: ${data.goals}`
 
-    if (!response.ok) {
-      const error = await response.text()
-      console.error('Airtable submission failed:', error)
+  try {
+    // 1. Look up an existing contact by email (case-insensitive). Strip any
+    // stray double-quotes so they can't break the formula string.
+    const safeEmail = data.email.replace(/"/g, '')
+    const formula = `LOWER({Email})=LOWER("${safeEmail}")`
+    const lookupUrl = `${baseUrl}?filterByFormula=${encodeURIComponent(formula)}&maxRecords=1`
+    const lookupRes = await fetch(lookupUrl, { headers: authHeaders })
+
+    if (!lookupRes.ok) {
+      const error = await lookupRes.text()
+      console.error('Airtable lookup failed:', error)
       return { ok: false, error }
     }
 
-    return { ok: true }
+    const lookup = await lookupRes.json()
+    const existing = lookup.records?.[0] as
+      | { id: string; fields: Record<string, unknown> }
+      | undefined
+
+    if (existing) {
+      // 2a. Returning contact — increment touch count, bump last touch date,
+      // reset to the inquiry stage, and APPEND the new goals to their notes.
+      const currentCount = Number(existing.fields['Touch Count']) || 0
+      const currentNotes =
+        typeof existing.fields['Notes'] === 'string' ? existing.fields['Notes'] : ''
+      const mergedNotes = currentNotes ? `${currentNotes}\n\n${datedGoals}` : datedGoals
+
+      const patchRes = await fetch(`${baseUrl}/${existing.id}`, {
+        method: 'PATCH',
+        headers: authHeaders,
+        body: JSON.stringify({
+          typecast: true,
+          fields: {
+            'Notes': mergedNotes,
+            'Status': 'Inquiry Received',
+            'Outreach Track': 'End Client',
+            'Last Touch Date': today,
+            'Touch Count': currentCount + 1,
+          },
+        }),
+      })
+
+      if (!patchRes.ok) {
+        const error = await patchRes.text()
+        console.error('Airtable update failed:', error)
+        return { ok: false, error }
+      }
+
+      return { ok: true, action: 'updated', touchCount: currentCount + 1 }
+    }
+
+    // 2b. Brand-new contact — create the record.
+    const createRes = await fetch(baseUrl, {
+      method: 'POST',
+      headers: authHeaders,
+      body: JSON.stringify({
+        // typecast lets Airtable match/create single-select options (e.g. Status)
+        // instead of rejecting the whole record when the exact option is missing.
+        typecast: true,
+        fields: {
+          'Name': `${data.firstName} ${data.lastName}`,
+          'Email': data.email,
+          'Cell Phone': data.phone,
+          'Notes': datedGoals,
+          'Source': 'Website Consultation Form',
+          'Status': 'Inquiry Received',
+          'Outreach Track': 'End Client',
+          'Last Touch Date': today,
+          'Touch Count': 1,
+        },
+      }),
+    })
+
+    if (!createRes.ok) {
+      const error = await createRes.text()
+      console.error('Airtable create failed:', error)
+      return { ok: false, error }
+    }
+
+    return { ok: true, action: 'created', touchCount: 1 }
   } catch (err) {
     const error = err instanceof Error ? err.message : String(err)
     console.error('Airtable submission threw:', error)
@@ -74,14 +140,20 @@ export async function POST(request: Request) {
     // Submit to Airtable first so the notification email can report CRM status.
     // The lead is never lost: if the CRM write fails, the email below flags it
     // loudly so it can be added manually.
-    const airtableResult = await submitToAirtable({ firstName, lastName, email, phone, goals })
+    const airtableResult = await upsertToAirtable({ firstName, lastName, email, phone, goals })
+
+    const crmSummary = airtableResult.ok
+      ? airtableResult.action === 'updated'
+        ? `Updated existing contact — Touch Count now ${airtableResult.touchCount}.`
+        : `New contact created — Touch Count ${airtableResult.touchCount}.`
+      : ''
 
     const crmBannerHtml = airtableResult.ok
-      ? `<div style="padding:12px 20px;background:#ECFDF5;color:#065F46;border-radius:8px;margin-bottom:20px;">✅ Saved to the CRM (Contacts table).</div>`
+      ? `<div style="padding:12px 20px;background:#ECFDF5;color:#065F46;border-radius:8px;margin-bottom:20px;">✅ Saved to the CRM (Contacts table). ${crmSummary}</div>`
       : `<div style="padding:12px 20px;background:#FEF2F2;color:#991B1B;border:1px solid #FCA5A5;border-radius:8px;margin-bottom:20px;">⚠️ <strong>NOT saved to the CRM — add this lead manually.</strong><br/>Airtable error: ${airtableResult.error}</div>`
 
     const crmBannerText = airtableResult.ok
-      ? 'CRM: Saved to Contacts table.\n\n'
+      ? `CRM: Saved to Contacts table. ${crmSummary}\n\n`
       : `CRM: *** NOT SAVED — ADD MANUALLY *** (Airtable error: ${airtableResult.error})\n\n`
 
     // Create transporter with environment variables
