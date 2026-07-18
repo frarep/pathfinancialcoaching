@@ -38,6 +38,7 @@ async function submitToAirtable(data: {
             'Notes': data.goals,
             'Source': 'Website Consultation Form',
             'Status': 'Inquiry Received',
+            'Outreach Track': 'End Client',
           },
         }),
       }
