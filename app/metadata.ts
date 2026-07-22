@@ -2,7 +2,7 @@ import { Metadata } from 'next'
 
 export const siteConfig = {
   name: 'Path Financial Coaching',
-  description: 'Transform your financial future with personalized coaching from a Ramsey Preferred Coach. Get out of debt, build wealth, and achieve financial peace.',
+  description: 'Transform your financial future with personalized coaching from a Former Ramsey Preferred Coach. Get out of debt, build wealth, and achieve financial peace.',
   url: 'https://pathfinancialcoaching.com', // Update with actual domain
   ogImage: '/images/pablo-heimplatz-EAvS-4KnGrk-unsplash.jpg',
   creator: 'Patrick Frare',

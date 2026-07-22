@@ -12,7 +12,7 @@ const inter = Inter({ subsets: ['latin'] })
 export const metadata: Metadata = {
   metadataBase: new URL(siteConfig.url),
   ...createMetadata({
-    title: 'Ramsey Preferred Financial Coach',
+    title: 'Master Trained Financial Coach',
     path: '/',
   }),
   icons: {
